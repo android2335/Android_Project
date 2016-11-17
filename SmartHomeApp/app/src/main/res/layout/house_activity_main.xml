@@ -117,7 +117,24 @@
 	<FrameLayout
 		android:id="@+id/container"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_margin="10dp"/>
+		android:layout_height="399dp"
+		android:layout_margin="10dp">
+
+	</FrameLayout>
+
+	<TextView
+		android:text="TextView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/textView3"
+		tools:text="Time" />
+
+	<EditText
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="time"
+		android:ems="10"
+		android:id="@+id/editText5"
+		android:hint="Time" />
 
 </LinearLayout>

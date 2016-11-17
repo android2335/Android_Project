@@ -1,0 +1,7 @@
+#Wed Nov 16 19:49:55 EST 2016
+base.0=C\:\\Users\\Yu\\Documents\\GitHub\\Android_Project\\HouseSettingsPart\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_f8ff7aec1d06c755c21e229ff0fa5a51cb962e24
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\Yu\\Documents\\GitHub\\Android_Project\\HouseSettingsPart\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_2879f701d6ddc20770d9bd76d4031bef98db7fcc\\classes.dex
+base.1=C\:\\Users\\Yu\\Documents\\GitHub\\Android_Project\\HouseSettingsPart\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_2879f701d6ddc20770d9bd76d4031bef98db7fcc
+file.0=C\:\\Users\\Yu\\Documents\\GitHub\\Android_Project\\HouseSettingsPart\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_f8ff7aec1d06c755c21e229ff0fa5a51cb962e24\\classes.dex
