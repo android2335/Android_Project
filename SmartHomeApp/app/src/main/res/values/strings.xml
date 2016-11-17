@@ -13,4 +13,5 @@
     <string name="AutomobileAbout">About</string>
     <string name="title_automobileitem_list">automobileItems</string>
     <string name="title_automobileitem_detail">automobileItem Detail</string>
+    <string name="title_house_activity">House Settings</string>
 </resources>

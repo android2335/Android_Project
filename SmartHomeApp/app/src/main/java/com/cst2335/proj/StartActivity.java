@@ -37,8 +37,8 @@ public class StartActivity extends AppCompatActivity {
         houseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(StartActivity.this, HouseActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(StartActivity.this, HouseActivity.class);
+                startActivity(intent);
             }
         });
 
