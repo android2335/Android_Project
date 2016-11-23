@@ -8,4 +8,5 @@
     <string name="KitchenButtonText">Kitchen</string>
     <string name="HouseButtonText">House</string>
     <string name="AutomobileButtonText">Automobile</string>
+    <string name="title_activity_automobile">Automobile</string>
 </resources>

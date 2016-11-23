@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".StartActivity" />
+        <activity
+            android:name=".Automobile"
+            android:label="@string/title_activity_automobile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
