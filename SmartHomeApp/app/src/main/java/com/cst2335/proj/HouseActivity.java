@@ -18,6 +18,10 @@ public class HouseActivity extends AppCompatActivity
     public static final String EXTRA_HOUSE_OPTION = "house option";
     private static final int HOUSE_OPTIONS_NOT_SET = -1;
 
+    public static final int HOUSE_OPTION_GARAGE = 0;
+    public static final int HOUSE_OPTION_TEMPERATURE = 1;
+    public static final int HOUSE_OPTION_WEATHER = 2;
+
     HousePagerAdapter mHousePpagerAdapter;
 
     ViewPager mHouseViewPager;
@@ -39,7 +43,7 @@ public class HouseActivity extends AppCompatActivity
         Intent startupIntent = getIntent();
         int houseOption = startupIntent.getIntExtra(EXTRA_HOUSE_OPTION, HOUSE_OPTIONS_NOT_SET);
         if (houseOption != HOUSE_OPTIONS_NOT_SET) {
-            mHousePpagerAdapter.getItem(houseOption);
+            mHousePpagerAdapter.setHouseOptions(houseOption);
             mHouseNavigationDrawerHelper.setSelection(houseOption);
         }
     }
@@ -47,7 +51,7 @@ public class HouseActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int optionLib, long l) {
-        mHousePpagerAdapter.getItem(optionLib);
+        mHousePpagerAdapter.setHouseOptions(optionLib);
         mHouseNavigationDrawerHelper.handleSelect(optionLib);
     }
 

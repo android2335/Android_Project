@@ -66,14 +66,14 @@ public class HouseNavigationDrawerHelper {
         mHouseDrawerLayout.closeDrawer(mHouseDrawerListView);
     }
 
-    public void handleOnPrepareOptionsMenu(Menu menu) {
-        boolean itemVisible = !mHouseDrawerLayout.isDrawerOpen(mHouseDrawerListView);
-
-        for (int index = 0; index < menu.size(); index++) {
-            MenuItem item = menu.getItem(index);
-            item.setEnabled(itemVisible);
-        }
-    }
+//    public void handleOnPrepareOptionsMenu(Menu menu) {
+//        boolean itemVisible = !mHouseDrawerLayout.isDrawerOpen(mHouseDrawerListView);
+//
+//        for (int index = 0; index < menu.size(); index++) {
+//            MenuItem item = menu.getItem(index);
+//            item.setEnabled(itemVisible);
+//        }
+//    }
 
     public void handleOnOptionsItemSelected(MenuItem item) {
         mHouseDrawerToggle.onOptionsItemSelected(item);

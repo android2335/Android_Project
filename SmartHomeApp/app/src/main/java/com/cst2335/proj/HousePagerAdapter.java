@@ -39,18 +39,21 @@ public class HousePagerAdapter extends FragmentStatePagerAdapter {
                 mHouseOptionDescription = "garage description";
                 //TODO: replace some logo
                 //mHouseOptionLogoResourceId = R.drawable.ps_android_logo;
+                getItem(HOUSE_OPTION_GARAGE);
                 break;
             case HOUSE_OPTION_TEMPERATURE:
                 mHouseOptionTitle = "Temperature";
                 mHouseOptionDescription = "house tempterature";
                 //TODO: replace some logo
                 //mHouseOptionLogoResourceId = R.drawable.ps_android_logo;
+                getItem(HOUSE_OPTION_TEMPERATURE);
                 break;
             case HOUSE_OPTION_WEATHER:
                 mHouseOptionTitle = "Weather";
                 mHouseOptionDescription = "weather";
                 //TODO: replace some logo
                 //mHouseOptionLogoResourceId = R.drawable.ps_android_logo;
+                getItem(HOUSE_OPTION_WEATHER);
                 break;
             default:
                 Toast.makeText(mContext, "Invalid option", Toast.LENGTH_LONG).show();
@@ -62,17 +65,17 @@ public class HousePagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int houseOption) {
+    public Fragment getItem(int i) {
 
-        if( houseOption == HOUSE_OPTION_GARAGE ) {
+        if( i == HOUSE_OPTION_GARAGE ) {
+            HouseGarageFragment houseGarageFragment = new HouseGarageFragment();
             mHouseOptionTitle = "Garage";
             mHouseOptionDescription = "garage description";
             //TODO: replace some logo
             //mHouseOptionLogoResourceId = R.drawable.ps_android_logo;
-            HouseGarageFragment houseGarageFragment = new HouseGarageFragment();
             return houseGarageFragment;
         }
-        else if( houseOption == HOUSE_OPTION_TEMPERATURE ) {
+        else if( i == HOUSE_OPTION_TEMPERATURE ) {
             mHouseOptionTitle = "Temperature";
             mHouseOptionDescription = "house tempterature";
             //TODO: replace some logo
@@ -80,7 +83,7 @@ public class HousePagerAdapter extends FragmentStatePagerAdapter {
             HouseTempFragment houseTempFragment = new HouseTempFragment();
             return houseTempFragment;
         }
-        else if( houseOption == HOUSE_OPTION_WEATHER ) {
+        else if( i == HOUSE_OPTION_WEATHER ) {
             mHouseOptionTitle = "Weather";
             mHouseOptionDescription = "weather";
             //TODO: replace some logo
@@ -96,7 +99,7 @@ public class HousePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 1;
+        return 3;
     }
 
     @Override
