@@ -34,7 +34,7 @@
         android:id="@+id/textView_gas" />
 
     <Button
-        android:text="Settings"
+        android:text="@string/AutomobileSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
         android:id="@+id/button_setting" />
 
     <Button
-        android:text="About"
+        android:text="@string/AutomobileAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

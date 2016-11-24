@@ -9,4 +9,8 @@
     <string name="HouseButtonText">House</string>
     <string name="AutomobileButtonText">Automobile</string>
     <string name="title_activity_automobile">Automobile</string>
+    <string name="AutomobileSetting">Settings</string>
+    <string name="AutomobileAbout">About</string>
+    <string name="title_automobileitem_list">automobileItems</string>
+    <string name="title_automobileitem_detail">automobileItem Detail</string>
 </resources>
