@@ -18,6 +18,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".StartActivity" />
+        <activity
+            android:name=".Automobile"
+            android:label="@string/title_activity_automobile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AutomobileItemListActivity"
+            android:label="@string/title_automobileitem_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AutomobileItemDetailActivity"
+            android:label="@string/title_automobileitem_detail"
+            android:parentActivityName=".AutomobileItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cst2335.proj.AutomobileItemListActivity" />
+        </activity>
     </application>
 
 </manifest>

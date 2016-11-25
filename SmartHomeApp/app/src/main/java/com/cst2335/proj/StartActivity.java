@@ -46,8 +46,8 @@ public class StartActivity extends AppCompatActivity {
         automobileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(StartActivity.this, AutoActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(StartActivity.this, Automobile.class);
+                startActivity(intent);
             }
         });
     }
