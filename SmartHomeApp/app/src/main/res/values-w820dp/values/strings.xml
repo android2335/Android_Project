@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Smart_Home</string>
+    <string name="LivingRoomText">Living Room</string>
+    <string name="KitchenText">Kitchen</string>
+    <string name="HouseSettingsText">House Settings</string>
+    <string name="AutomobileText">Automobile</string>
+    <string name="title_livingroomitem_list">LivingRoomItems
+        \u0020\u0020\u0020\u0020\u0020\u0020
+        \u0020\u0020\u0020\u0020\u0020\u0020
+        \u0020\u0020\u0020\u0020\u0020\u0020
+        \u0020\u0020\u0020\u0020\u0020\u0020
+        \u0020\u0020\u0020\u0020\u0020\u0020
+        ClickCount</string>
+    <string name="title_livingroomitem_detail">LivingRoomItem Detail</string>
+    <string name="help_menu">Help Menu</string>
+    <string name="dialog_message">Do you want to delete this item?</string>
+    <string name="dialog_title"> </string>
+    <string name="help_text"><b>Help! Come to your rescue:</b>
+                        <br>Click an item will show its detailed status on the right or in a new page.</br>
+                        <br>The frequency of click on this item is recorded as ClickCount, shown besides of the item name.</br>
+                        <br>The order of item list is from the most clicked to the least </br></string>
+    <string name="delete_item">Delete!</string>
+    <string name="show_detail">Show Details</string>
+    <string name="addItemButton">Add Items</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="choice2">Do you want to go back?</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="color_1">Red</string>
+    <string name="color_2">Green</string>
+    <string name="color_3">Blue</string>
+    <string name="color_4">Yellow</string>
+</resources>

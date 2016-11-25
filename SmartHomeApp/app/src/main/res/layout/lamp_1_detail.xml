@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.longquan.smart_home.LivingRoomItemDetailFragment">
+
+    <TextView
+        android:id="@+id/lamp_1_textview"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch Status = "
+        android:id="@+id/lamp_1_switch_textView"
+        style="?android:attr/textAppearanceLarge"
+        android:padding="16dp"/>
+
+    <Switch
+        android:layout_width="160dp"
+        android:layout_height="54dp"
+        android:id="@+id/lamp_1_switch" />
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- "Help Menu", should appear as action button if possible -->
+    <!--<item
+        android:id="@+id/help"
+        android:icon="@drawable/ic_favorite_black_48dp"
+        android:title="@string/help_menu"/>-->
+        <!--app:showAsAction="ifRoom"/>-->
+
+</menu>

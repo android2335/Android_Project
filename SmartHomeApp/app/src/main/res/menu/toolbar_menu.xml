@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/SmartLivingRoom"
+        android:title="Living Room"
+        android:icon="@drawable/living_room"
+        android:orderInCategory="10"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/SmartKitchen"
+        android:title="Kitchen"
+        android:icon="@drawable/kitchen"
+        android:orderInCategory="20"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/SmartHouseSettings"
+        android:title="House Seetings"
+        android:icon="@drawable/house_settings"
+        android:orderInCategory="30"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/SmartAutomobile"
+        android:title="Automobile"
+        android:icon="@drawable/automobile"
+        android:orderInCategory="40"
+        app:showAsAction="always" />
+
+</menu>

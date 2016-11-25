@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.longquan.smart_home.LivingRoomItemDetailFragment">
+
+    <TextView
+        android:id="@+id/blind_1_textview"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/blind_1_seekbar_textview"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true" />
+
+    <include layout="@layout/vertical_blind"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/blind_1_seekbar_textview"/>
+
+</LinearLayout>

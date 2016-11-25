@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SeekBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:padding="0dp"
+    android:max="100"
+    android:minHeight="5dip"
+    android:maxHeight="5dip"
+
+    android:rotation="90"
+    android:id="@+id/vertical_blind">
+    <!--
+    android:minHeight="10dip"
+    android:maxHeight="10dip"
+    android:minHeight="10px"
+    android:maxHeight="10px"
+    android:minWidth="10dip"
+    android:maxWidth="10dip"-->
+
+</SeekBar>
