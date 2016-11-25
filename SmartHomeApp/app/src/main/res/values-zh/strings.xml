@@ -28,14 +28,12 @@
     <string name="delete_item">Delete!</string>
     <string name="show_detail">Show Details</string>
     <string name="addItemButton">Add Items</string>
-    <string name="title_activity_test_toolbar">TestToolbar</string>
-    <string name="choice2">Do you want to go back?</string>
     <string name="ok">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="color_1">Red</string>
     <string name="color_2">Green</string>
-    <string name="color_3">Blue</string>
-    <string name="color_4">Yellow</string>
+    <string name="color_3">蓝色</string>
+    <string name="color_4">黄色</string>
 
     <!-- Kitchen part add here -->
     <string name="KitchenText">厨房</string>
@@ -49,6 +47,7 @@
     <string name="close_house_drawer_message">关闭屋子设置选项</string>
 
     <!-- Automobile part add here -->
+    <string name="AutomobileText">汽车</string>
     <string name="AutomobileButtonText">汽车</string>
     <string name="title_activity_automobile">汽车</string>
     <string name="AutomobileSetting">设置</string>
