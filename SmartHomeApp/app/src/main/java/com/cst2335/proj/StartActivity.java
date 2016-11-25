@@ -19,8 +19,8 @@ public class StartActivity extends AppCompatActivity {
         livingRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(StartActivity.this, LivingRoomActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(StartActivity.this, LivingRoomItemListActivity.class);
+                startActivity(intent);
             }
         });
 
