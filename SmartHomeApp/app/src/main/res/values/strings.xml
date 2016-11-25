@@ -37,6 +37,8 @@
     <!-- Kitchen part add here -->
     <string name="KitchenText">Kitchen</string>
     <string name="KitchenButtonText">Kitchen</string>
+    <string name="action_settings">Settings</string>
+    <string name="control">Control</string>
 
     <!-- House part add here -->
     <string name="HouseSettingsText">House Settings</string>

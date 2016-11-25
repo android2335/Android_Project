@@ -23,6 +23,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".MainActivity"
+            android:label="Kitchen Main"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".LilianActivity"
+            android:label="Kitchen List"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
             android:name=".Automobile"
             android:label="@string/title_activity_automobile"
             android:theme="@style/AppTheme.NoActionBar" />

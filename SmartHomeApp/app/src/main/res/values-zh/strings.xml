@@ -38,6 +38,8 @@
     <!-- Kitchen part add here -->
     <string name="KitchenText">厨房</string>
     <string name="KitchenButtonText">厨房</string>
+    <string name="action_settings">设置</string>
+    <string name="control">控制</string>
 
     <!-- House part add here -->
     <string name="HouseSettingsText">屋子设置</string>

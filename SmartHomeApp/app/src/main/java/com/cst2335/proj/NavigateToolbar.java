@@ -53,7 +53,7 @@ public class NavigateToolbar extends AppCompatActivity {
                 return true;
 
             case R.id.SmartKitchen:
-                //startActivity(new Intent(NavigateToolbar.this, KitchenActivity.class));
+                startActivity(new Intent(NavigateToolbar.this, LilianActivity.class));
                 return true;
 
             case R.id.SmartHouseSettings:
