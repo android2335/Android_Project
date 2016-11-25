@@ -27,8 +27,6 @@
     <string name="delete_item">Delete!</string>
     <string name="show_detail">Show Details</string>
     <string name="addItemButton">Add Items</string>
-    <string name="title_activity_test_toolbar">TestToolbar</string>
-    <string name="choice2">Do you want to go back?</string>
     <string name="ok">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="color_1">Red</string>
