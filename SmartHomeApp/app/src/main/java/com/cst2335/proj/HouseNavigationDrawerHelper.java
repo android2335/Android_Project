@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -65,15 +64,6 @@ public class HouseNavigationDrawerHelper {
         mHouseDrawerListView.setItemChecked(option, true);
         mHouseDrawerLayout.closeDrawer(mHouseDrawerListView);
     }
-
-//    public void handleOnPrepareOptionsMenu(Menu menu) {
-//        boolean itemVisible = !mHouseDrawerLayout.isDrawerOpen(mHouseDrawerListView);
-//
-//        for (int index = 0; index < menu.size(); index++) {
-//            MenuItem item = menu.getItem(index);
-//            item.setEnabled(itemVisible);
-//        }
-//    }
 
     public void handleOnOptionsItemSelected(MenuItem item) {
         mHouseDrawerToggle.onOptionsItemSelected(item);

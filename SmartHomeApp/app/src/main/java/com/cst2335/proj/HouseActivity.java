@@ -6,30 +6,22 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class HouseActivity extends AppCompatActivity
         implements ListView.OnItemClickListener {
 
-    protected static final String ACTIVITY_NAME = "HouseActivity";
     public static final String EXTRA_HOUSE_OPTION = "house option";
-    private static final int HOUSE_OPTIONS_NOT_SET = -1;
-
     public static final int HOUSE_OPTION_GARAGE = 0;
     public static final int HOUSE_OPTION_TEMPERATURE = 1;
     public static final int HOUSE_OPTION_WEATHER = 2;
-
-    HousePagerAdapter mHousePpagerAdapter;
-
-    ViewPager mHouseViewPager;
+    protected static final String ACTIVITY_NAME = "HouseActivity";
+    private static final int HOUSE_OPTIONS_NOT_SET = -1;
     HouseNavigationDrawerHelper mHouseNavigationDrawerHelper;
 
     @Override
@@ -37,26 +29,18 @@ public class HouseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.house_activity_main);
 
-        mHousePpagerAdapter = new HousePagerAdapter(getSupportFragmentManager(), this);
-
-        // Set up the ViewPager with the sections adapter.
-        //mHouseViewPager = (ViewPager) findViewById(R.id.house_pager);
-        //mHouseViewPager.setAdapter(mHousePpagerAdapter);
         mHouseNavigationDrawerHelper = new HouseNavigationDrawerHelper();
         mHouseNavigationDrawerHelper.init(this, this);
 
         Intent startupIntent = getIntent();
         int houseOption = startupIntent.getIntExtra(EXTRA_HOUSE_OPTION, HOUSE_OPTIONS_NOT_SET);
         if (houseOption != HOUSE_OPTIONS_NOT_SET) {
-            mHousePpagerAdapter.setHouseOptions(houseOption);
             mHouseNavigationDrawerHelper.setSelection(houseOption);
         }
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int option, long l) {
-        //mHousePpagerAdapter.setHouseOptions(option);
         mHouseNavigationDrawerHelper.handleSelect(option);
         displayFragment(option);
     }
@@ -82,7 +66,7 @@ public class HouseActivity extends AppCompatActivity
 
     private void commitFragment(Fragment fragment, String tagFragment) {
 
-        //Log.i(TAG, String.format("HouseActivity.commitFragment Tag(%s) isInLayout(%s) isAdded(%s)",tagFragment, fragment.isInLayout()? "true":"false", fragment.isAdded()? "true":"false"  ));
+        Log.i(ACTIVITY_NAME, String.format("HouseActivity.commitFragment Tag(%s) isInLayout(%s) isAdded(%s)", tagFragment, fragment.isInLayout() ? "true" : "false", fragment.isAdded() ? "true" : "false"));
 
         if (!fragment.isInLayout() && !fragment.isAdded()) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -90,7 +74,7 @@ public class HouseActivity extends AppCompatActivity
             transaction.replace(R.id.fragment_container, fragment, tagFragment);
 
             if (isOnBackStack(tagFragment)) {  // if on the back stack remove all of the fragments 'above' it
-                getSupportFragmentManager().popBackStack(tagFragment,0);
+                getSupportFragmentManager().popBackStack(tagFragment, 0);
             } else if (!"GARAGE".equals(tagFragment)) {
                 transaction.addToBackStack(tagFragment);
             }
@@ -124,7 +108,7 @@ public class HouseActivity extends AppCompatActivity
         } catch (Exception e) {
 
         }
-//        Log.i(TAG, String.format("HouseActivity.isOnBackStack Tag(%s) (%s)", tag, result?"true":"false"));
+        Log.i(ACTIVITY_NAME, String.format("HouseActivity.isOnBackStack Tag(%s) (%s)", tag, result ? "true" : "false"));
 
         return result;
     }
@@ -132,7 +116,6 @@ public class HouseActivity extends AppCompatActivity
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
         mHouseNavigationDrawerHelper.syncState();
     }
 
