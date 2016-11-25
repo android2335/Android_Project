@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="navigation_house_drawer_options">
+        <item>车库</item>
+        <item>室内温度</item>
+        <item>户外天气</item>
+    </string-array>
+</resources>

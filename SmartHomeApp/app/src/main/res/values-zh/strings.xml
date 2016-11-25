@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">聪明屋子应用</string>
+    <string name="login">登录</string>
+    <string name="password">密码</string>
+    <string name="preference_file_key">登录文件名</string>
+    <string name="welcome_message">欢迎使用傻瓜屋子应用</string>
+    <string name="LivingRoomButtonText">客厅</string>
+    <string name="KitchenButtonText">厨房</string>
+    <string name="HouseButtonText">屋子</string>
     <string name="AutomobileButtonText">汽车</string>
     <string name="title_activity_automobile">汽车</string>
     <string name="AutomobileSetting">设置</string>
     <string name="AutomobileAbout">关于</string>
+    <string name="title_automobileitem_list">汽车部件</string>
+    <string name="title_automobileitem_detail">汽车部件详情</string>
+    <string name="title_house_activity">房屋设置</string>
+    <string name="open_house_drawer_message">打开屋子设置选项</string>
+    <string name="close_house_drawer_message">关闭屋子设置选项</string>
 </resources>

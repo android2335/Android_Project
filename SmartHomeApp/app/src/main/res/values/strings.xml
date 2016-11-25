@@ -15,5 +15,5 @@
     <string name="title_automobileitem_detail">automobileItem Detail</string>
     <string name="title_house_activity">House Settings</string>
     <string name="open_house_drawer_message">Open House Settings</string>
-    <string name="close_house_drawer_message">Open House Settings</string>
+    <string name="close_house_drawer_message">Close House Settings</string>
 </resources>
