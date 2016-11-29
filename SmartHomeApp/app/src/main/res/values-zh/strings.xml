@@ -17,8 +17,8 @@
         \u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020
         ClickCount</string>
-    <string name="title_livingroomitem_detail">LivingRoomItem Detail</string>
-    <string name="help_menu">Help Menu</string>
+    <string name="title_livingroomitem_detail">客厅物品明细</string>
+    <string name="help_menu">帮助菜单</string>
     <string name="dialog_message">Do you want to delete this item?</string>
     <string name="dialog_title"> </string>
     <string name="help_text"><b>Help! Come to your rescue:</b>
@@ -27,11 +27,11 @@
                         <br>The order of item list is from the most clicked to the least </br></string>
     <string name="delete_item">Delete!</string>
     <string name="show_detail">Show Details</string>
-    <string name="addItemButton">Add Items</string>
+    <string name="addItemButton">添加物品</string>
     <string name="ok">Yes</string>
     <string name="cancel">Cancel</string>
-    <string name="color_1">Red</string>
-    <string name="color_2">Green</string>
+    <string name="color_1">红色</string>
+    <string name="color_2">绿色</string>
     <string name="color_3">蓝色</string>
     <string name="color_4">黄色</string>
 

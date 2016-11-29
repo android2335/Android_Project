@@ -55,12 +55,6 @@ public class LivingRoomItemDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {//the menu item in App Bar
         int id = item.getItemId();
         if (id == android.R.id.home) {//if select home menu in App Bar
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
             navigateUpTo(new Intent(this, LivingRoomItemListActivity.class));
             return true;
         }

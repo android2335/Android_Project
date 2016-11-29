@@ -5,8 +5,32 @@
     android:layout_height="400dp">
 
     <TextView
-        android:id="@+id/helpText"
-        android:text="@string/help_text"
+        android:id="@+id/helpHeader"
+        android:text="@string/help_header"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
+
+    <TextView
+        android:id="@+id/helpAuthor"
+        android:text="@string/help_author"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
+
+    <TextView
+        android:id="@+id/helpVersion"
+        android:text="@string/help_version"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
+
+    <TextView
+        android:id="@+id/helpBody"
+        android:text="@string/help_body"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="0dp"

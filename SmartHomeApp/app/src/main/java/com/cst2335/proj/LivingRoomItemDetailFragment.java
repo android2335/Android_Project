@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +37,9 @@ public class LivingRoomItemDetailFragment extends Fragment {
     private static boolean lamp_1_switch_status;
     //private SeekBar lamp_2_brightness;//for AsyncTask access: BUT if put Task as nested class inside of method then this isn't needed
     private static String lamp_3_color = "Color = ";
-    private static double blind_1_cover = 1;
+    private static boolean tv_1_power_status;
+    private static int channelNumber;
+    private static int laudness;
 
     //The dummy content mItem this fragment is presenting
     private String mItem;
@@ -73,6 +77,7 @@ public class LivingRoomItemDetailFragment extends Fragment {
         //LivingRoomDatabaseHelper lrAdapter = new LivingRoomDatabaseHelper(this);
         LivingRoomDatabaseHelper lrAdapter = new LivingRoomDatabaseHelper(getActivity());
         sqlDB = lrAdapter.getWritableDatabase();
+
     }
 
     @Override
@@ -130,12 +135,12 @@ public class LivingRoomItemDetailFragment extends Fragment {
                 if (isChecked) {
                     // save "on" as status, and pass back to Activity
                     lamp_1_switch_status = true;
-                    switchText.setText("Switch status = ON");
+                    switchText.setText("Switch = ON");
 
                 } else {
                     // save "off" as status, and pass back to Activity
                     lamp_1_switch_status = false;
-                    switchText.setText("Switch status = OFF");
+                    switchText.setText("Switch = OFF");
                 }
 
                 ContentValues cv = new ContentValues();
@@ -304,6 +309,131 @@ public class LivingRoomItemDetailFragment extends Fragment {
             //((TextView) rootView.findViewById(R.id.livingroomitem_detail)).setText(mItem.details);
             ((TextView) rootView.findViewById(R.id.tv_1_textview)).setText(mItem);
         }
+
+        Switch tvPower = (Switch) rootView.findViewById(R.id.tv_1_power);
+        Cursor powerQuery = sqlDB.query(LivingRoomDatabaseHelper.TABLE_NAME, new String[]{"Switch"}, "ItemName = ?",new String[]{"TV 1"}, null,null,null,null );
+        powerQuery.moveToFirst();
+        int switch_status = powerQuery.getInt(powerQuery.getColumnIndex("Switch"));
+        tv_1_power_status = (switch_status == 0)? false: true;
+        tvPower.setChecked(tv_1_power_status);
+        final TextView switchText = (TextView)rootView.findViewById(R.id.tv_1_power_textView);
+        switchText.setText("Power = " + (tv_1_power_status? "ON": "OFF"));
+        tvPower.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setMItem("The power is " + (isChecked ? "on" : "off"));
+
+                if (isChecked) {
+                    // save "on" as status, and pass back to Activity
+                    tv_1_power_status = true;
+                    switchText.setText("Power = ON");
+
+                } else {
+                    // save "off" as status, and pass back to Activity
+                    tv_1_power_status = false;
+                    switchText.setText("Power = OFF");
+                }
+
+                ContentValues cv = new ContentValues();
+                cv.put("Switch", (tv_1_power_status? 1:0));
+                sqlDB.update(LivingRoomDatabaseHelper.TABLE_NAME, cv, "ItemName = ?", new String[]{"TV 1"});
+            }
+        });
+
+        //retrieve channel number from database and then display
+        Cursor channelQuery = sqlDB.query(LivingRoomDatabaseHelper.TABLE_NAME, new String[]{"Channel"}, "ItemName = ?",new String[]{"TV 1"}, null,null,null,null );
+        channelQuery.moveToFirst();
+        channelNumber = channelQuery.getInt(channelQuery.getColumnIndex("Channel"));
+        final TextView channelText = (TextView)rootView.findViewById(R.id.tv_1_channel_textView);
+        channelText.setText("Channel = " + channelNumber);
+
+        //Up button and Down button change the channel number, and store new value to database
+        final Button channelUp = (Button)rootView.findViewById(R.id.upButton);
+        channelUp.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                channelNumber++;
+                if(channelNumber > 10) channelNumber = 0;//the highest channel is 10
+                channelText.setText("Channel = " + channelNumber);
+                setMItem("Channel is " + channelNumber);
+
+                ContentValues cv = new ContentValues();
+                cv.put("Channel", channelNumber);
+                sqlDB.update(LivingRoomDatabaseHelper.TABLE_NAME, cv, "ItemName = ?", new String[]{"TV 1"});
+            }
+        });
+
+        final Button channelDown = (Button)rootView.findViewById(R.id.downButton);
+        channelDown.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                channelNumber--;
+                if(channelNumber < 0) channelNumber = 10; //the lowest channel is 0
+                channelText.setText("Channel = " + channelNumber);
+                setMItem("Channel is " + channelNumber);
+
+                ContentValues cv = new ContentValues();
+                cv.put("Channel", channelNumber);
+                sqlDB.update(LivingRoomDatabaseHelper.TABLE_NAME, cv, "ItemName = ?", new String[]{"TV 1"});
+            }
+        });
+
+        //volumn slider
+        final SeekBar volumn = (SeekBar)rootView.findViewById(R.id.tv_1_seekbar);
+        //retrieve volumn value (in Progress column) from database, and display
+        Cursor volQuery = sqlDB.query(LivingRoomDatabaseHelper.TABLE_NAME, new String[]{"Progress"}, "ItemName = ?",new String[]{"TV 1"}, null,null,null,null );
+        volQuery.moveToFirst();
+        laudness = volQuery.getInt(volQuery.getColumnIndex("Progress"));
+        volumn.setProgress(laudness);
+
+        //left button reduces and right button increases volumn, and store value to database
+        final Button leftButton = (Button)rootView.findViewById(R.id.leftButton);
+        leftButton.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                laudness = laudness - 10;
+                if(laudness < 0) laudness = 0;
+                volumn.setProgress(laudness);
+                setMItem("Volumn is " + laudness + "/" + volumn.getMax());
+
+                ContentValues cv = new ContentValues();
+                cv.put("Progress", laudness);
+                sqlDB.update(LivingRoomDatabaseHelper.TABLE_NAME, cv, "ItemName = ?", new String[]{"TV 1"});
+            }
+        });
+
+        final Button rightButton = (Button)rootView.findViewById(R.id.rightButton);
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                laudness = laudness + 10;
+                if(laudness > 100) laudness = 100;
+                volumn.setProgress(laudness);
+                setMItem("Volumn is " + laudness + "/" + volumn.getMax());
+
+                ContentValues cv = new ContentValues();
+                cv.put("Progress", laudness);
+                sqlDB.update(LivingRoomDatabaseHelper.TABLE_NAME, cv, "ItemName = ?", new String[]{"TV 1"});
+            }
+        });
+
+        //press enter button show a message
+        final Button enterButton = (Button)rootView.findViewById(R.id.enterButton);
+        enterButton.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Enter button pressed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //snackbar
+        FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab_tv_1_detail);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, getMItem(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();//show message in snackbar
+            }
+        });
 
         return rootView;
     }
