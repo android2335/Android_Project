@@ -59,14 +59,24 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
         switch(mi.getItemId()){
             case R.id.menu_help:
                 Toast.makeText(LivingRoomItemListActivity.this, "Help Menu clicked",Toast.LENGTH_LONG).show();
+                setMessage("Help Menu clicked");
 
                 final Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.dialog_help);
                 dialog.setTitle("Help Instruction");
 
                 // set the custom dialog components - text, image and button
-                TextView help_text = (TextView) dialog.findViewById(R.id.helpText);
-                help_text.setText(R.string.help_text);
+                TextView help_header = (TextView) dialog.findViewById(R.id.helpHeader);
+                help_header.setText(R.string.help_header);
+
+                TextView help_author = (TextView) dialog.findViewById(R.id.helpAuthor);
+                help_author.setText(R.string.help_author);
+
+                TextView help_version = (TextView) dialog.findViewById(R.id.helpVersion);
+                help_version.setText(R.string.help_version);
+
+                TextView help_body = (TextView) dialog.findViewById(R.id.helpBody);
+                help_body.setText(R.string.help_body);
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
                 // if button is clicked, close the dialog
@@ -93,6 +103,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
+        //snackbar
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,9 +141,13 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                 ContentValues newValues = new ContentValues();
                 newValues.put("ItemName", addItemText.getText().toString());
                 sqlDB.insert(LivingRoomDatabaseHelper.TABLE_NAME, null, newValues);
-                Cursor queryResult = sqlDB.rawQuery("select rowid as _id, * from " + LivingRoomDatabaseHelper.TABLE_NAME, null);
+                //Cursor queryResult = sqlDB.rawQuery("select rowid as _id, * from " + LivingRoomDatabaseHelper.TABLE_NAME, null);
+                Cursor queryQuery = sqlDB.query(LivingRoomDatabaseHelper.TABLE_NAME, new String[]{"rowid as _id", "ItemName", "ClickCount"},null, null,null,null,"ClickCount DESC" );
                 listView.setAdapter(new SimpleCursorAdapter(LivingRoomItemListActivity.this,
-                        R.layout.living_room_listview_row, queryResult, new String[]{"ItemName","ClickCount"},
+                        R.layout.living_room_listview_row,
+                        //queryResult, //keep list order after add item
+                        queryQuery,
+                        new String[]{"ItemName","ClickCount"},
                         new int[]{R.id.item_name, R.id.item_click_count}, 0));
             }
         });
@@ -148,6 +163,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                 TextView tv = (TextView)view.findViewById(R.id.item_name);
                 final String itemSelected = tv.getText().toString();
                 Toast.makeText(LivingRoomItemListActivity.this, "item clicked =" + itemSelected,Toast.LENGTH_LONG).show();
+
                 builder.setMessage(R.string.dialog_message)//.setTitle(R.string.dialog_title)
                         .setPositiveButton(R.string.delete_item, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id){
@@ -157,9 +173,13 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                                 list_position + ", id = " + table_id, Toast.LENGTH_LONG).show();
 
                                 //refresh listview
-                                Cursor queryResult = sqlDB.rawQuery("select rowid as _id, * from " + LivingRoomDatabaseHelper.TABLE_NAME, null);
+                                //Cursor queryResult = sqlDB.rawQuery("select rowid as _id, * from " + LivingRoomDatabaseHelper.TABLE_NAME, null);
+                                Cursor queryQuery = sqlDB.query(LivingRoomDatabaseHelper.TABLE_NAME, new String[]{"rowid as _id", "ItemName", "ClickCount"},null, null,null,null,"ClickCount DESC" );
                                 listView.setAdapter(new SimpleCursorAdapter(LivingRoomItemListActivity.this,
-                                        R.layout.living_room_listview_row, queryResult, new String[]{"ItemName","ClickCount"},
+                                        R.layout.living_room_listview_row,
+                                        //queryResult,
+                                        queryQuery,
+                                        new String[]{"ItemName","ClickCount"},
                                         new int[]{R.id.item_name, R.id.item_click_count}, 0));
                             }
                         })
@@ -171,6 +191,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                                 int clickcount = clickcountQuery.getInt(clickcountQuery.getColumnIndex("ClickCount")) + 1;//Error: android.database.CursorIndexOutOfBoundsException: Index -1 requested, with a size of 1
                                 //getInt(columnIndex = -1)!because of no "clickcountQuery.moveToFirst();" line
                                 Toast.makeText(LivingRoomItemListActivity.this, "ClickCount =" + clickcount,Toast.LENGTH_LONG).show();
+                                setMessage("Item " + itemSelected +",  ClickCount =" + clickcount);
 
                                 //Cursor updateQuery = sqlDB.rawQuery("update " + LivingRoomDatabaseHelper.TABLE_NAME + "set ClickCount = ? where rowid = ?", new String[]{Integer.toString(clickcount),Long.toString(table_id)});
                                 ContentValues countUpdate = new ContentValues();
