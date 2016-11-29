@@ -59,6 +59,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
         switch(mi.getItemId()){
             case R.id.menu_help:
                 Toast.makeText(LivingRoomItemListActivity.this, "Help Menu clicked",Toast.LENGTH_LONG).show();
+                setMessage("Help Menu clicked");
 
                 final Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.dialog_help);
@@ -102,7 +103,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        /*//snackbar
+        //snackbar
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +111,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                 Snackbar.make(view, getMessage(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();//show newMessage in snackbar
             }
-        });//--- not show snackbar in leftside (fragment on the right ---- */
+        });
 
         if (findViewById(R.id.livingroomitem_detail_container) != null) {
             mTwoPane = true;
@@ -162,6 +163,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                 TextView tv = (TextView)view.findViewById(R.id.item_name);
                 final String itemSelected = tv.getText().toString();
                 Toast.makeText(LivingRoomItemListActivity.this, "item clicked =" + itemSelected,Toast.LENGTH_LONG).show();
+
                 builder.setMessage(R.string.dialog_message)//.setTitle(R.string.dialog_title)
                         .setPositiveButton(R.string.delete_item, new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id){
@@ -189,6 +191,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                                 int clickcount = clickcountQuery.getInt(clickcountQuery.getColumnIndex("ClickCount")) + 1;//Error: android.database.CursorIndexOutOfBoundsException: Index -1 requested, with a size of 1
                                 //getInt(columnIndex = -1)!because of no "clickcountQuery.moveToFirst();" line
                                 Toast.makeText(LivingRoomItemListActivity.this, "ClickCount =" + clickcount,Toast.LENGTH_LONG).show();
+                                setMessage("Item " + itemSelected +",  ClickCount =" + clickcount);
 
                                 //Cursor updateQuery = sqlDB.rawQuery("update " + LivingRoomDatabaseHelper.TABLE_NAME + "set ClickCount = ? where rowid = ?", new String[]{Integer.toString(clickcount),Long.toString(table_id)});
                                 ContentValues countUpdate = new ContentValues();
