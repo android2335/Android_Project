@@ -36,6 +36,8 @@ public class HouseActivity extends AppCompatActivity
         int houseOption = startupIntent.getIntExtra(EXTRA_HOUSE_OPTION, HOUSE_OPTIONS_NOT_SET);
         if (houseOption != HOUSE_OPTIONS_NOT_SET) {
             mHouseNavigationDrawerHelper.setSelection(houseOption);
+        }else {
+            displayFragment(HOUSE_OPTIONS_NOT_SET);
         }
     }
 
@@ -60,6 +62,8 @@ public class HouseActivity extends AppCompatActivity
                 commitFragment(houseWeatherFragment, "WEATHER");
                 break;
             default:
+                HouseDefaultFragment houseDefaultFragment = new HouseDefaultFragment();
+                commitFragment(houseDefaultFragment, "HOUSE");
                 break;
         }
     }
