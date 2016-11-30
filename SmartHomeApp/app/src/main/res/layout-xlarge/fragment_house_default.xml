@@ -9,12 +9,22 @@
     tools:context="com.cst2335.proj.HouseActivity$DummySectionFragment"
     android:gravity="fill_horizontal"
     >
-  
+
   <Button
-      android:text="SamrtHome Main"
+      android:text="Button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/houseDefaultMainButton"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="54dp"
+      android:id="@+id/button"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentStart="true" />
+
+  <Button
+      android:text="Button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/button2"
       android:layout_alignParentBottom="true"
       android:layout_alignParentStart="true"
       android:layout_alignParentEnd="true" />
@@ -24,7 +34,7 @@
       android:layout_height="wrap_content"
       android:id="@+id/garageImage"
       android:src="@drawable/house_logo"
-      android:layout_above="@+id/houseDefaultMainButton"
+      android:layout_above="@+id/button"
       android:layout_alignParentStart="true" />
 
 </RelativeLayout>

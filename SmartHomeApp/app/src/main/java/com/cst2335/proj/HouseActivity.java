@@ -41,6 +41,10 @@ public class HouseActivity extends AppCompatActivity
         }
     }
 
+    public HouseNavigationDrawerHelper getHouseNavigationDrawer() {
+        return mHouseNavigationDrawerHelper;
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int option, long l) {
         mHouseNavigationDrawerHelper.handleSelect(option);
