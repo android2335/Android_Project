@@ -9,7 +9,7 @@
     tools:context="com.cst2335.proj.HouseActivity$DummySectionFragment"
     android:gravity="fill_horizontal"
     >
-  
+
   <Button
       android:text="SamrtHome Main"
       android:layout_width="wrap_content"
