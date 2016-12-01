@@ -13,7 +13,7 @@ import android.widget.Button;
 public class HouseWeatherFragment extends Fragment {
 
     private static final String TAG = HouseWeatherFragment.class.getSimpleName();
-    private Button mainButton;
+    //private Button mainButton;
 
     @Override
     public void onAttach(Context context) {
@@ -32,15 +32,15 @@ public class HouseWeatherFragment extends Fragment {
         Log.i(TAG, "onCreateView()");
 
         View theView = inflater.inflate(R.layout.fragment_house_weather, container, false);
-        mainButton = (Button) theView.findViewById(R.id.houseWeatherMainButton);
+        //mainButton = (Button) theView.findViewById(R.id.houseWeatherMainButton);
 
-        mainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NavigateToolbar.class);
-                startActivity(intent);
-            }
-        });
+//        mainButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), NavigateToolbar.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return theView;
     }
