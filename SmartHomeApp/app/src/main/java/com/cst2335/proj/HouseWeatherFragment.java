@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,14 +108,23 @@ public class HouseWeatherFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String city = editText.getText().toString();
-                list.add(city);
-                editText.setText(""); //clear the text
-                cityAdapter.notifyDataSetChanged();
+                if( city.length() == 0 || existCityRecord(city)) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                    builder1.setMessage("Please write a valid city name, and no duplicate city");
+                    builder1.setCancelable(true);
 
-                ContentValues values = new ContentValues();
-                values.put(HouseDataDatabaseHelper.CITIES_NAME, city);
-                sqlDB.insert(HouseDataDatabaseHelper.CITIES_TABLE_NAME, null,
-                        values);
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }else {
+                    list.add(city);
+                    editText.setText(""); //clear the text
+                    cityAdapter.notifyDataSetChanged();
+
+                    ContentValues values = new ContentValues();
+                    values.put(HouseDataDatabaseHelper.CITIES_NAME, city);
+                    sqlDB.insert(HouseDataDatabaseHelper.CITIES_TABLE_NAME, null,
+                            values);
+                }
             }
         });
 
@@ -122,12 +132,23 @@ public class HouseWeatherFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String city = editText.getText().toString();
-                list.remove(city);
-                editText.setText(""); //clear the text
-                cityAdapter.notifyDataSetChanged();
 
-                sqlDB.delete(HouseDataDatabaseHelper.CITIES_TABLE_NAME,
-                        HouseDataDatabaseHelper.CITIES_NAME + "=\'" + city + "\'", null);
+                if( city.length() == 0 || !existCityRecord(city)) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                    builder1.setMessage("Please write a valid city name");
+                    builder1.setCancelable(true);
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }
+                else {
+                    list.remove(city);
+                    editText.setText(""); //clear the text
+                    cityAdapter.notifyDataSetChanged();
+
+                    sqlDB.delete(HouseDataDatabaseHelper.CITIES_TABLE_NAME,
+                            HouseDataDatabaseHelper.CITIES_NAME + "=\'" + city + "\'", null);
+                }
             }
         });
 
@@ -144,6 +165,10 @@ public class HouseWeatherFragment extends Fragment {
         });
 
         return theView;
+    }
+
+    private boolean existCityRecord(String city) {
+        return list.contains(city);
     }
 }
 
