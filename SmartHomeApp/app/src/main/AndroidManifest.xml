@@ -51,6 +51,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cst2335.proj.AutomobileItemListActivity" />
         </activity>
+        <activity android:name=".AutomobileItemEdit"></activity>
         <activity
             android:name=".HouseActivity"
             android:label="@string/title_house_activity"
