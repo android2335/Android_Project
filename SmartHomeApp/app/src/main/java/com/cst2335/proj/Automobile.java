@@ -15,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class Automobile extends AppCompatActivity {
 
     protected SQLiteDatabase dbWrite;   //database for write
@@ -22,18 +24,16 @@ public class Automobile extends AppCompatActivity {
     protected TextView tvSpeed;   //speed
     protected TextView tvKm;      //kilometer
     protected boolean kmExist;
-    protected TextView tvGas;     //gas level
     protected boolean gasExist;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_automobile);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_automobile);
 
-        //textviews
-        tvSpeed = (TextView)findViewById(R.id.textView_speed);
-        tvKm = (TextView)findViewById(R.id.textView_km);
-        tvGas = (TextView)findViewById(R.id.textView_gas);
+            //textviews
+            tvSpeed = (TextView)findViewById(R.id.textView_speed);
+            tvKm = (TextView)findViewById(R.id.textView_km);
 
         //button about
         Button btnAbout = (Button)findViewById(R.id.button_about);
@@ -41,7 +41,9 @@ public class Automobile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Automobile.this);
-                String strAbout = "This is an Application which simulates driving a car.You could reach the settings of a car by clicking the settings button. After you get all the settings ready," +
+                String strAbout = "Author: Sulin Zhao, Version: 1.0\n\nThis " +
+                        "is an Application which simulates driving a car.You could reach the settings of " +
+                        "a car by clicking the settings button. After you get all the settings ready," +
                         "you could change the shift to start driving.";
                 builder.setMessage(strAbout);
                 builder.setTitle("About");
@@ -114,23 +116,7 @@ public class Automobile extends AppCompatActivity {
         super.onDestroy();
 
         //save database (update table)
-        ContentValues cValue = new ContentValues();
-        cValue.put(AutomobileDatabaseHelper.ITEM, AutomobileDatabaseHelper.ITEM_KM);
-        cValue.put(AutomobileDatabaseHelper.VALUE, tvKm.getText().toString());
-        if (kmExist) {
-            dbWrite.update(AutomobileDatabaseHelper.TABLE_NAME, cValue, AutomobileDatabaseHelper.ITEM + " is ?", new String[]{AutomobileDatabaseHelper.ITEM_KM});
-        }
-        else {
-            dbWrite.insert(AutomobileDatabaseHelper.TABLE_NAME, "NULL", cValue);
-        }
-        cValue.put(AutomobileDatabaseHelper.ITEM, AutomobileDatabaseHelper.ITEM_GAS);
-        cValue.put(AutomobileDatabaseHelper.VALUE, tvGas.getText().toString());
-        if (gasExist) {
-            dbWrite.update(AutomobileDatabaseHelper.TABLE_NAME, cValue, AutomobileDatabaseHelper.ITEM + " is ?", new String[]{AutomobileDatabaseHelper.ITEM_GAS});
-        }
-        else {
-            dbWrite.insert(AutomobileDatabaseHelper.TABLE_NAME, "NULL", cValue);
-        }
+        AutomobileDatabaseOperate.write();
 
         //close database
         dbWrite.close();
@@ -138,7 +124,7 @@ public class Automobile extends AppCompatActivity {
 
     protected void sleep() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
         catch (Exception e) {
 
@@ -146,10 +132,6 @@ public class Automobile extends AppCompatActivity {
     }
 
     class DatabaseQuery extends AsyncTask<String, String, String> {
-        protected String minTemp;
-        protected String maxTemp;
-        protected String curTemp;
-        protected String bmpFileName;
 
         @Override
         protected String doInBackground(String ...args) {
@@ -157,35 +139,18 @@ public class Automobile extends AppCompatActivity {
                 //read database
                 AutomobileDatabaseHelper dbHelper = new AutomobileDatabaseHelper(Automobile.this);
                 dbWrite = dbHelper.getWritableDatabase();
+                AutomobileDatabaseOperate.setDatabaseHandle(dbWrite);
+
+                publishProgress(new String[]{"10"});
+                sleep();
+                publishProgress(new String[]{"40"});
 
                 //read settings from table
-                String strTmp = "";
-                Cursor cursor = dbWrite.query(AutomobileDatabaseHelper.TABLE_NAME, new String[]{AutomobileDatabaseHelper.VALUE},
-                        AutomobileDatabaseHelper.ITEM + " = ?",  new String[]{AutomobileDatabaseHelper.ITEM_KM}, null, null, null, null);
-                if (cursor.getCount() > 0) {
-                    cursor.moveToFirst();
-                    strTmp = cursor.getString(0);
-                    kmExist = true;
-                }
-                else {
-                    strTmp = "0 Km";
-                    kmExist = false;
-                }
+                AutomobileDatabaseOperate.read();
+
+                publishProgress(new String[]{"80"});
                 sleep();
-                publishProgress(new String[]{"1", strTmp, "50"});
-                cursor = dbWrite.query(AutomobileDatabaseHelper.TABLE_NAME, new String[]{AutomobileDatabaseHelper.VALUE},
-                        AutomobileDatabaseHelper.ITEM + " = ?",  new String[]{AutomobileDatabaseHelper.ITEM_GAS}, null, null, null, null);
-                if (cursor.getCount() > 0) {
-                    cursor.moveToFirst();
-                    strTmp = cursor.getString(0);
-                    gasExist = true;
-                }
-                else {
-                    strTmp = "0 Gas";
-                    gasExist = false;
-                }
-                sleep();
-                publishProgress(new String[]{"2", strTmp, "100"});
+                publishProgress(new String[]{"100"});
             }
             catch (Exception e) {
                 return e.getMessage();
@@ -196,29 +161,19 @@ public class Automobile extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(String ...values) {
-            int seq = 0;
-            int progress = 0;
-            try {
-                seq = Integer.parseInt(values[0]);
-                progress = Integer.parseInt(values[2]);
-            }
-            catch (Exception e) {
-
-            }
-            switch (seq) {
-                case 1:
-                    tvKm.setText(values[1]);
-                    break;
-                case 2:
-                    tvGas.setText(values[1]);
-                    break;
-            }
             ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
-            pb.setProgress(progress);
+            pb.setProgress(Integer.parseInt(values[0]));
         }
 
         @Override
         protected void onPostExecute(String result) {
+
+            //update driving info
+            ProgressBar pbGas = (ProgressBar)findViewById(R.id.progressBar_gas);
+            pbGas.setProgress(AutomobileDatabaseOperate.getGasLevel());
+            TextView tvKm = (TextView)findViewById(R.id.textView_km);
+            tvKm.setText("" + AutomobileDatabaseOperate.getOdometer());
+
             ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
             pb.setVisibility(View.INVISIBLE);
         }

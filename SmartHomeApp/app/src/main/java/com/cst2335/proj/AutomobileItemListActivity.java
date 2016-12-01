@@ -11,11 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-import com.cst2335.proj.dummy.DummyContent;
+import com.cst2335.proj.dummy.AutomobileDummyContent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,14 +36,14 @@ public class AutomobileItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_automobileitem_list);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_automobileitem_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        //toolbar.setTitle(getTitle());
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            //toolbar.setTitle(getTitle());
 
         View recyclerView = findViewById(R.id.automobileitem_list);
         assert recyclerView != null;
@@ -57,15 +59,15 @@ public class AutomobileItemListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(AutomobileDummyContent.ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<AutomobileDummyContent.DummyItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<AutomobileDummyContent.DummyItem> items) {
             mValues = items;
         }
 
@@ -113,7 +115,7 @@ public class AutomobileItemListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public AutomobileDummyContent.DummyItem mItem;
 
             public ViewHolder(View view) {
                 super(view);
