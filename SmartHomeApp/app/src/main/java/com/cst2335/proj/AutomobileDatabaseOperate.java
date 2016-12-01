@@ -22,10 +22,12 @@ public class AutomobileDatabaseOperate {
     private static int temperature;
     private static boolean light;  //light is on or off
     private static ArrayList<Integer> itemNo;  //item sequence number
+    public static ArrayList<String> itemName;  //item Names in sequence
 
     private static SQLiteDatabase dbHandel;  //handel to operate database
 
     //item sequence in arraylist "itemNo"
+    public final static int ITEM_NUM = 7;
     public final static int SEQ_SPEED = 0;
     public final static int SEQ_FULE = 1;
     public final static int SEQ_ODOMETER = 2;
@@ -36,7 +38,18 @@ public class AutomobileDatabaseOperate {
 
     //create arraylist
     static {
-        itemNo = new ArrayList<>(7);
+        itemNo = new ArrayList<>(ITEM_NUM);
+        for (int i = 0; i < ITEM_NUM; i++) {
+            itemNo.add(0);
+        }
+        itemName = new ArrayList<>(ITEM_NUM);
+        itemName.add(AutomobileDummyContent.SPEED);
+        itemName.add(AutomobileDummyContent.FULE);
+        itemName.add(AutomobileDummyContent.ODOMETER);
+        itemName.add(AutomobileDummyContent.RADIO);
+        itemName.add(AutomobileDummyContent.GPS);
+        itemName.add(AutomobileDummyContent.TEMPERATURE);
+        itemName.add(AutomobileDummyContent.LIGHT);
     };
 
     public static int getSpeedForward() {
@@ -99,9 +112,21 @@ public class AutomobileDatabaseOperate {
         dbHandel = db;
     }
 
+    public static ArrayList<Integer> getItemNo() {
+        return itemNo;
+    }
+    public static void setItemNo(ArrayList<Integer> arr) {
+        itemNo.clear();
+        for (Integer item : arr) {
+            itemNo.add(item);
+        }
+    }
+
     public static void read() {
         //clear data
-        itemNo.clear();
+        for (int i = 0; i < ITEM_NUM; i++) {
+            itemNo.set(0, 0);
+        }
 
         Cursor cursor = dbHandel.query(AutomobileDatabaseHelper.TABLE_NAME, new String[]{"*"}, null, null, null, null, null, null);
         if (cursor.getCount() > 0) {
