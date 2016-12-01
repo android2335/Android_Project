@@ -48,6 +48,8 @@
     <string name="title_house_activity">House Settings</string>
     <string name="open_house_drawer_message">Open House Settings</string>
     <string name="close_house_drawer_message">Close House Settings</string>
+    <string name="house_menu_about">About</string>
+    <string name="house_menu_howToUse">How To Use</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">Automobile</string>
