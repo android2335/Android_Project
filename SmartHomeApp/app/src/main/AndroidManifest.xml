@@ -13,22 +13,27 @@
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".NavigateToolbar"
             android:label="Home Navigation"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".MainActivity"
             android:label="Kitchen Main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".LilianActivity"
             android:label="Kitchen List"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".Automobile"
             android:label="@string/title_activity_automobile"
@@ -36,7 +41,7 @@
         <activity
             android:name=".AutomobileItemListActivity"
             android:label="@string/title_automobileitem_list"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".AutomobileItemDetailActivity"
             android:label="@string/title_automobileitem_detail"
@@ -49,7 +54,7 @@
         <activity
             android:name=".HouseActivity"
             android:label="@string/title_house_activity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".LivingRoomItemListActivity"
             android:label="@string/title_livingroomitem_list"
@@ -63,7 +68,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LivingRoomItemListActivity" />
         </activity>
-        <activity android:name=".AutomobileItemEdit"></activity>
     </application>
 
 </manifest>
