@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Gas left: "
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_gasLeft" />
+
+    <TextView
+        android:text="Estimated runing: "
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_gasLeft"
+        android:layout_alignLeft="@id/tv_gasLeft"
+        android:id="@+id/tv_estimatedKm" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text|number"
+        android:ems="5"
+        android:layout_below="@id/tv_estimatedKm"
+        android:layout_alignLeft="@id/tv_gasLeft"
+        android:id="@+id/et_gasFill" />
+
+    <TextView
+        android:text=" L  "
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_estimatedKm"
+        android:layout_toRightOf="@id/et_gasFill"
+        android:id="@+id/tv_liter" />
+
+    <Button
+        android:text="Fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_estimatedKm"
+        android:layout_toRightOf="@id/tv_liter"
+        android:id="@+id/btn_fill" />
+</RelativeLayout>
