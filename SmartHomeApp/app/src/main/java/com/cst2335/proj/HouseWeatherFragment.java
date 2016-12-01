@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -37,6 +38,8 @@ public class HouseWeatherFragment extends Fragment {
     private SQLiteDatabase sqlDB;
     private String[] allCities = { HouseDataDatabaseHelper.CITIES_KEY_ID,
             HouseDataDatabaseHelper.CITIES_NAME };
+
+    private String weatherCity = "";
 
     @Override
     public void onAttach(Context context) {
@@ -92,22 +95,19 @@ public class HouseWeatherFragment extends Fragment {
 
         final ArrayAdapter<String> cityAdapter = new CityAdapter(getContext(), list);
         cityList.setAdapter(cityAdapter);
+        cityList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        cityList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()  {
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                list.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                weatherCity = list.get(position);
             }
         });
 
         addCityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String city = editText.getText().toString();
+                String city = editText.getText().toString().trim();
                 if( city.length() == 0 || existCityRecord(city)) {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
                     builder1.setMessage("Please write a valid city name, and no duplicate city");
@@ -116,7 +116,7 @@ public class HouseWeatherFragment extends Fragment {
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
                 }else {
-                    list.add(city);
+                    list.add(city.trim());
                     editText.setText(""); //clear the text
                     cityAdapter.notifyDataSetChanged();
 
@@ -131,7 +131,7 @@ public class HouseWeatherFragment extends Fragment {
         removeCityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String city = editText.getText().toString();
+                String city = editText.getText().toString().trim();
 
                 if( city.length() == 0 || !existCityRecord(city)) {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
@@ -142,7 +142,7 @@ public class HouseWeatherFragment extends Fragment {
                     alert11.show();
                 }
                 else {
-                    list.remove(city);
+                    list.remove(city.trim());
                     editText.setText(""); //clear the text
                     cityAdapter.notifyDataSetChanged();
 
@@ -153,6 +153,7 @@ public class HouseWeatherFragment extends Fragment {
         });
 
         //========  weather display part =====
+        
 
         //========  last part =====
         mainButton = (Button) theView.findViewById(R.id.houseWeatherMainButton);
@@ -197,6 +198,8 @@ class CityAdapter extends ArrayAdapter<String> {
         View result = inflater.inflate(R.layout.house_city_row, null);
         TextView city = (TextView)result.findViewById(R.id.city_text);
         city.setText( getItem(position) ); // get the string at position
+
+
 
         return result;
     }
