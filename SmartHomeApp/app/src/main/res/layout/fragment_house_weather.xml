@@ -40,4 +40,13 @@
       android:layout_marginTop="@dimen/activity_vertical_margin"
       android:gravity="center_horizontal"/>
 
+  <Button
+      android:text="SamrtHome Main"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/houseWeatherMainButton"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
