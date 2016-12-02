@@ -1,5 +1,7 @@
 package com.cst2335.proj.dummy;
 
+import com.cst2335.proj.AutomobileDatabaseOperate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +21,7 @@ public class AutomobileDummyContent {
     public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
 
     public static final String SPEED = "Speed";
-    public static final String FULE = "Fule";
+    public static final String FUEL = "Fuel";
     public static final String ODOMETER = "Odometer";
     public static final String RADIO = "Radio";
     public static final String GPS = "GPS";
@@ -31,35 +33,19 @@ public class AutomobileDummyContent {
      */
     public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
-    private static final int COUNT = 7;
+    public static void createItem() {
+        //clear
+        ITEMS.clear();
+        ITEM_MAP.clear();
 
-    static {
         // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            switch (i) {
-                case 1:
-                    addItem(new DummyItem(i + "", SPEED, SPEED));
+        int k = 1;
+        ArrayList<Integer> itemNo = AutomobileDatabaseOperate.getItemNo();
+        for (int i = 1; i <= AutomobileDatabaseOperate.ITEM_NUM; i++)
+            for (int j = 0; j < AutomobileDatabaseOperate.ITEM_NUM; j++) {
+                if (itemNo.get(j) == i) {
+                    addItem(new DummyItem(k++ + "", AutomobileDatabaseOperate.itemName.get(j), AutomobileDatabaseOperate.itemName.get(j)));
                     break;
-                case 2:
-                    addItem(new DummyItem(i + "", FULE, FULE));
-                    break;
-                case 3:
-                    addItem(new DummyItem(i + "", ODOMETER, ODOMETER));
-                    break;
-                case 4:
-                    addItem(new DummyItem(i + "", RADIO, RADIO));
-                    break;
-                case 5:
-                    addItem(new DummyItem(i + "", GPS, GPS));
-                    break;
-                case 6:
-                    addItem(new DummyItem(i + "", TEMPERATURE, TEMPERATURE));
-                    break;
-                case 7:
-                    addItem(new DummyItem(i + "", LIGHT, LIGHT));
-                    break;
-                default:
-                    addItem(createDummyItem(i));
             }
         }
     }

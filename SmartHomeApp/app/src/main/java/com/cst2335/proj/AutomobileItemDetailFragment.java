@@ -1,7 +1,9 @@
 package com.cst2335.proj;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
@@ -10,6 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.cst2335.proj.dummy.AutomobileDummyContent;
@@ -63,16 +69,87 @@ public class AutomobileItemDetailFragment extends Fragment {
         View rootView = null;
         switch (mItem.details) {
             case AutomobileDummyContent.SPEED:
+                {
                 rootView = inflater.inflate(R.layout.automobileitem_speed, container, false);
+                    final EditText etForward = (EditText)rootView.findViewById(R.id.et_forwardSpeed);
+                    etForward.setText(AutomobileDatabaseOperate.getSpeedForward() + "");
+                    final EditText etBackward = (EditText)rootView.findViewById(R.id.et_backwardSpeed);
+                    etBackward.setText(AutomobileDatabaseOperate.getSpeedBackward() + "");
+                    Button btnSet = (Button)rootView.findViewById(R.id.btn_set);
+                    btnSet.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AutomobileDatabaseOperate.setSpeedForward(Integer.parseInt(etForward.getText().toString()));
+                            AutomobileDatabaseOperate.setSpeedBackward(Integer.parseInt(etBackward.getText().toString()));
+                        }
+                    });
+                }
                 break;
-            case AutomobileDummyContent.FULE:
+            case AutomobileDummyContent.FUEL: {
                 rootView = inflater.inflate(R.layout.automobileitem_fuel, container, false);
+                final TextView tvGasLeft = (TextView)rootView.findViewById(R.id.tv_gasLeftValue);
+                tvGasLeft.setText(AutomobileDatabaseOperate.getGasLevel() + "");
+                final TextView tvEstimatedKm = (TextView)rootView.findViewById(R.id.tv_estimatedKmValue);
+                tvEstimatedKm.setText(AutomobileDatabaseOperate.getGasLevel() * 10 + "");
+
+                final EditText etFill = (EditText) rootView.findViewById(R.id.et_gasFill);
+                Button btnFill = (Button)rootView.findViewById(R.id.btn_fill);
+                btnFill.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        float gas = Float.parseFloat(etFill.getText().toString()) + AutomobileDatabaseOperate.getGasLevel();
+                        if (gas > AutomobileDatabaseOperate.FULL_FUEL) {
+                            gas = AutomobileDatabaseOperate.FULL_FUEL;
+                        }
+                        AutomobileDatabaseOperate.setGasLevel(gas);
+                        tvGasLeft.setText(AutomobileDatabaseOperate.getGasLevel() + "");
+                        tvEstimatedKm.setText(AutomobileDatabaseOperate.getGasLevel() * 10 + "");
+                        etFill.setText("0");
+                    }
+                });
+            }
                 break;
             case AutomobileDummyContent.ODOMETER:
+                {
                 rootView = inflater.inflate(R.layout.automobileitem_odometer, container, false);
+                    Button btnReset = (Button)rootView.findViewById(R.id.btn_reset);
+                    btnReset.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AutomobileDatabaseOperate.setOdometer(0);
+                        }
+                    });
+                }
                 break;
-            case AutomobileDummyContent.RADIO:
+            case AutomobileDummyContent.RADIO: {
                 rootView = inflater.inflate(R.layout.automobileitem_radio, container, false);
+                final RadioButton btnAM = (RadioButton)rootView.findViewById(R.id.radioButton_AM);
+                final RadioButton btnFM = (RadioButton)rootView.findViewById(R.id.radioButton_FM);
+                if (AutomobileDatabaseOperate.getRadioMode().equals("AM")) {
+                    btnAM.setChecked(true);
+                    btnFM.setChecked(false);
+                }
+                else {
+                    btnAM.setChecked(false);
+                    btnFM.setChecked(true);
+                }
+                final EditText etFreq = (EditText) rootView.findViewById(R.id.et_frequency);
+                etFreq.setText(AutomobileDatabaseOperate.getRadioFrequency() + "");
+
+                Button btnSet = (Button)rootView.findViewById(R.id.btn_set);
+                btnSet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AutomobileDatabaseOperate.setRadioFrequency(Float.parseFloat(etFreq.getText().toString()));
+                        if (btnAM.isChecked()) {
+                            AutomobileDatabaseOperate.setRadioMode("AM");
+                        }
+                        else {
+                            AutomobileDatabaseOperate.setRadioMode("FM");
+                        }
+                    }
+                });
+            }
                 break;
             case AutomobileDummyContent.GPS:
             {
@@ -90,11 +167,30 @@ public class AutomobileItemDetailFragment extends Fragment {
                 });
             }
                 break;
-            case AutomobileDummyContent.TEMPERATURE:
+            case AutomobileDummyContent.TEMPERATURE: {
                 rootView = inflater.inflate(R.layout.automobileitem_temperature, container, false);
+                final EditText etTemp = (EditText) rootView.findViewById(R.id.et_temperature);
+                etTemp.setText(AutomobileDatabaseOperate.getTemperature() + "");
+                Button btnSet = (Button)rootView.findViewById(R.id.btn_set);
+                btnSet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AutomobileDatabaseOperate.setTemperature(Integer.parseInt(etTemp.getText().toString()));
+                    }
+                });
+            }
                 break;
-            case AutomobileDummyContent.LIGHT:
+            case AutomobileDummyContent.LIGHT: {
                 rootView = inflater.inflate(R.layout.automobileitem_light, container, false);
+                final Switch swLight = (Switch) rootView.findViewById(R.id.switch_light);
+                swLight.setChecked(AutomobileDatabaseOperate.getLight());
+                swLight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AutomobileDatabaseOperate.setLight(isChecked);
+                    }
+                });
+            }
                 break;
             default:
                 break;

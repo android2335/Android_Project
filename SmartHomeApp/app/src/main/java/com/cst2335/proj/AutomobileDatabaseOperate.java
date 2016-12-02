@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class AutomobileDatabaseOperate {
     private static int speedForward;
     private static int speedBackward;
-    private static int gasLevel;
-    private static int odometer;
+    private static float gasLevel;
+    private static float odometer;
     private static String radioMode;  //AM or FM
     private static float radioFrequency;
     private static int temperature;
@@ -24,12 +24,14 @@ public class AutomobileDatabaseOperate {
     private static ArrayList<Integer> itemNo;  //item sequence number
     public static ArrayList<String> itemName;  //item Names in sequence
 
-    private static SQLiteDatabase dbHandel;  //handel to operate database
+    public static SQLiteDatabase dbHandel;  //handel to operate database
+
+    public final static int FULL_FUEL = 60;  //100L gas capacity
 
     //item sequence in arraylist "itemNo"
     public final static int ITEM_NUM = 7;
     public final static int SEQ_SPEED = 0;
-    public final static int SEQ_FULE = 1;
+    public final static int SEQ_FUEL = 1;
     public final static int SEQ_ODOMETER = 2;
     public final static int SEQ_RADIO = 3;
     public final static int SEQ_GPS = 4;
@@ -44,7 +46,7 @@ public class AutomobileDatabaseOperate {
         }
         itemName = new ArrayList<>(ITEM_NUM);
         itemName.add(AutomobileDummyContent.SPEED);
-        itemName.add(AutomobileDummyContent.FULE);
+        itemName.add(AutomobileDummyContent.FUEL);
         itemName.add(AutomobileDummyContent.ODOMETER);
         itemName.add(AutomobileDummyContent.RADIO);
         itemName.add(AutomobileDummyContent.GPS);
@@ -66,17 +68,17 @@ public class AutomobileDatabaseOperate {
         speedBackward = speed;
     }
 
-    public static int getGasLevel() {
+    public static float getGasLevel() {
         return gasLevel;
     }
-    public static void setGasLevel(int gas) {
+    public static void setGasLevel(float gas) {
         gasLevel = gas;
     }
 
-    public static int getOdometer() {
+    public static float getOdometer() {
         return odometer;
     }
-    public static void setOdometer(int km) {
+    public static void setOdometer(float km) {
         odometer = km;
     }
 
@@ -121,11 +123,14 @@ public class AutomobileDatabaseOperate {
             itemNo.add(item);
         }
     }
+    public static void setOneItemNo(int index, int no) {
+        itemNo.set(index, no);
+    }
 
     public static void read() {
         //clear data
         for (int i = 0; i < ITEM_NUM; i++) {
-            itemNo.set(0, 0);
+            itemNo.set(i, 0);
         }
 
         Cursor cursor = dbHandel.query(AutomobileDatabaseHelper.TABLE_NAME, new String[]{"*"}, null, null, null, null, null, null);
@@ -153,14 +158,14 @@ public class AutomobileDatabaseOperate {
                             }
                             break;
 
-                        case AutomobileDummyContent.FULE:
+                        case AutomobileDummyContent.FUEL:
 
                             //set sequence no
-                            itemNo.set(SEQ_FULE, num);
+                            itemNo.set(SEQ_FUEL, num);
 
                             //get value
                             value = cursor.getString(cursor.getColumnIndex(AutomobileDatabaseHelper.VALUE));
-                            setGasLevel(Integer.parseInt(value));
+                            setGasLevel(Float.parseFloat(value));
                             break;
 
                         case AutomobileDummyContent.ODOMETER:
@@ -170,7 +175,7 @@ public class AutomobileDatabaseOperate {
 
                             //get value
                             value = cursor.getString(cursor.getColumnIndex(AutomobileDatabaseHelper.VALUE));
-                            setOdometer(Integer.parseInt(value));
+                            setOdometer(Float.parseFloat(value));
                             break;
 
                         case AutomobileDummyContent.RADIO:
@@ -206,7 +211,7 @@ public class AutomobileDatabaseOperate {
                         case AutomobileDummyContent.LIGHT:
 
                             //set sequence no
-                            itemNo.set(SEQ_TEMPERATURE, num);
+                            itemNo.set(SEQ_LIGHT, num);
 
                             //get value
                             value = cursor.getString(cursor.getColumnIndex(AutomobileDatabaseHelper.VALUE));
@@ -228,9 +233,6 @@ public class AutomobileDatabaseOperate {
 
     public static void write() {
 
-        //clean table data first
-        dbHandel.delete(AutomobileDatabaseHelper.TABLE_NAME, null, null);
-
         //only write when number is greater than 0
         //speed
         if (itemNo.get(SEQ_SPEED) > 0) {
@@ -242,11 +244,11 @@ public class AutomobileDatabaseOperate {
         }
 
         //fuel
-        if (itemNo.get(SEQ_FULE) > 0) {
+        if (itemNo.get(SEQ_FUEL) > 0) {
             ContentValues cValue = new ContentValues();
-            cValue.put(AutomobileDatabaseHelper.ITEM, AutomobileDummyContent.FULE);
-            cValue.put(AutomobileDatabaseHelper.ITEM_NO, itemNo.get(SEQ_FULE));
-            cValue.put(AutomobileDatabaseHelper.VALUE, String.format("%d", getGasLevel()));
+            cValue.put(AutomobileDatabaseHelper.ITEM, AutomobileDummyContent.FUEL);
+            cValue.put(AutomobileDatabaseHelper.ITEM_NO, itemNo.get(SEQ_FUEL));
+            cValue.put(AutomobileDatabaseHelper.VALUE, String.format("%.1f", getGasLevel()));
             dbHandel.insert(AutomobileDatabaseHelper.TABLE_NAME, "NULL", cValue);
         }
 
@@ -255,7 +257,7 @@ public class AutomobileDatabaseOperate {
             ContentValues cValue = new ContentValues();
             cValue.put(AutomobileDatabaseHelper.ITEM, AutomobileDummyContent.ODOMETER);
             cValue.put(AutomobileDatabaseHelper.ITEM_NO, itemNo.get(SEQ_ODOMETER));
-            cValue.put(AutomobileDatabaseHelper.VALUE, String.format("%d", getOdometer()));
+            cValue.put(AutomobileDatabaseHelper.VALUE, String.format("%.1f", getOdometer()));
             dbHandel.insert(AutomobileDatabaseHelper.TABLE_NAME, "NULL", cValue);
         }
 

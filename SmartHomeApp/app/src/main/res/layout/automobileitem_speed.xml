@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_forward"
         android:layout_alignBottom="@id/tv_forward"
-        android:inputType="text|number"
+        android:inputType="number"
         android:ems="5"
         android:id="@+id/et_forwardSpeed" />
 
@@ -40,7 +40,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text|number"
+        android:inputType="number"
         android:ems="5"
         android:layout_below="@id/et_forwardSpeed"
         android:layout_toRightOf="@id/tv_backward"

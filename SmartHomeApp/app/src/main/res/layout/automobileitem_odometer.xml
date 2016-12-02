@@ -9,5 +9,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
-        android:id="@+id/reset" />
+        android:id="@+id/btn_reset" />
 </RelativeLayout>
