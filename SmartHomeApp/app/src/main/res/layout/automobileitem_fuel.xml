@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Gas left: "
+        android:text="Gas left(L): "
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_width="wrap_content"
@@ -12,13 +12,29 @@
         android:id="@+id/tv_gasLeft" />
 
     <TextView
-        android:text="Estimated runing: "
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_gasLeft"
+        android:layout_alignBottom="@+id/tv_gasLeft"
+        android:id="@+id/tv_gasLeftValue" />
+
+    <TextView
+        android:text="Estimated Km: "
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_gasLeft"
         android:layout_alignLeft="@id/tv_gasLeft"
         android:id="@+id/tv_estimatedKm" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_estimatedKm"
+        android:layout_alignBottom="@+id/tv_estimatedKm"
+        android:id="@+id/tv_estimatedKmValue" />
 
     <EditText
         android:layout_width="wrap_content"

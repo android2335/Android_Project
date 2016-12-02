@@ -39,6 +39,13 @@ public class AutomobileItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    private final int EDIT_REQUEST_CODE = 100;
+
+    static {
+        //create setting items
+        AutomobileDummyContent.createItem();
+    }
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -73,10 +80,19 @@ public class AutomobileItemListActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.automobile_item_edit:
-                startActivity(new Intent(AutomobileItemListActivity.this, AutomobileItemEdit.class));
+                startActivityForResult(new Intent(AutomobileItemListActivity.this, AutomobileItemEdit.class), EDIT_REQUEST_CODE);
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        //if from set item activity, then quit to reload new item lists
+        if (requestCode == EDIT_REQUEST_CODE) {
+            finish();
+        }
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
