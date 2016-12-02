@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class AutomobileDatabaseHelper extends SQLiteOpenHelper {
     protected static String DATABASE_NAME = "Automobile.db";
     public static String TABLE_NAME = "MyTable";
-    protected static int VERSION_NUM = 1;
+    protected static int VERSION_NUM = 2;
 
     //table column name
     public final static String KEY_ID = "ID";          //ID
     public final static String ITEM = "ITEM";          //ITEM
-    public final static String ITEM_NO = "0";       //item number in sequence, if doesn't exist, then is 0
+    public final static String ITEM_NO = "ITEMNO";       //item number in sequence, if doesn't exist, then is 0
     public final static String VALUE = "VALUE";    //it may include multi-values for some item, and you need to code and decode for these items.
 
     public AutomobileDatabaseHelper(Context ctx) {

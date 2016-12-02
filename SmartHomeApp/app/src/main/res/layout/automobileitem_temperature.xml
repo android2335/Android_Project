@@ -25,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/et_temperature"
-        android:layout_toRightOf="@id/tv_degree" />
+        android:layout_toRightOf="@id/tv_degree"
+        android:id="@+id/btn_set"/>
 </RelativeLayout>
 
     <!--TextView xmlns:android="http://schemas.android.com/apk/res/android"

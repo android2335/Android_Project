@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,14 +27,21 @@ public class Automobile extends AppCompatActivity {
     protected boolean kmExist;
     protected boolean gasExist;
 
+    protected int driveMode = P_MODE;
+    protected static final int P_MODE = 100;
+    protected static final int D_MODE = 101;
+    protected static final int R_MODE = 102;
+    protected static final int NULL_MODE = 109;
+    protected boolean isUpdate = true;  //update information or not
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_automobile);
 
-            //textviews
-            tvSpeed = (TextView)findViewById(R.id.textView_speed);
-            tvKm = (TextView)findViewById(R.id.textView_km);
+        //textviews
+        final TextView tvSpeed = (TextView)findViewById(R.id.textView_speed);
+        final TextView tvKm = (TextView)findViewById(R.id.textView_km);
 
         //button about
         Button btnAbout = (Button)findViewById(R.id.button_about);
@@ -63,6 +71,7 @@ public class Automobile extends AppCompatActivity {
 
         //radio buttons
         RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
+
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -70,34 +79,18 @@ public class Automobile extends AppCompatActivity {
                 String strTmp = "";
                 switch (checkedId) {
                     case R.id.radioButton_P:
+                        driveMode = P_MODE;
+                        tvSpeed.setText("0");
                         break;
 
                     case R.id.radioButton_D:
-                        try {
-                            strTmp = tvKm.getText().toString();
-                            nTmp = Integer.parseInt(strTmp.substring(0, strTmp.length()-3));
-                        }
-                        catch (Exception e) {
-
-                        }
-                        tvKm.setText((nTmp + 50) + " Km");
+                        driveMode = D_MODE;
+                        tvSpeed.setText(AutomobileDatabaseOperate.getSpeedForward() + "");
                         break;
 
                     case R.id.radioButton_R:
-                        try {
-                            strTmp = tvKm.getText().toString();
-                            nTmp = Integer.parseInt(strTmp.substring(0, strTmp.length()-3));
-                        }
-                        catch (Exception e) {
-
-                        }
-                        final int nStep = 20;
-                        if (nTmp > nStep) {
-                            tvKm.setText((nTmp - nStep) + " Km");
-                        }
-                        else {
-                            tvKm.setText("0 Km");
-                        }
+                        driveMode = R_MODE;
+                        tvSpeed.setText(AutomobileDatabaseOperate.getSpeedBackward() + "");
                         break;
                 }
             }
@@ -109,11 +102,29 @@ public class Automobile extends AppCompatActivity {
         //start asynctask
         DatabaseQuery dbQuery = new DatabaseQuery();
         dbQuery.execute();
+        Running run = new Running();
+        run.execute();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isUpdate = true;
+        updateInfo();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isUpdate = false;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        //exit thread
+        driveMode = NULL_MODE;
 
         //save database (update table)
         AutomobileDatabaseOperate.write();
@@ -122,13 +133,31 @@ public class Automobile extends AppCompatActivity {
         dbWrite.close();
     }
 
-    protected void sleep() {
+    protected void sleep(int millisec) {
         try {
-            Thread.sleep(500);
+            Thread.sleep(millisec);
         }
         catch (Exception e) {
 
         }
+    }
+
+    protected void updateInfo() {
+        final TextView tvSpeed = (TextView)findViewById(R.id.textView_speed);
+        int speed = 0;
+        if (driveMode == D_MODE) {
+            speed = AutomobileDatabaseOperate.getSpeedForward();
+        }
+        else if (driveMode == R_MODE) {
+            speed = AutomobileDatabaseOperate.getSpeedBackward();
+        }
+        tvSpeed.setText(speed + "");
+
+        final TextView tvKm = (TextView)findViewById(R.id.textView_km);
+        tvKm.setText(String.format("%.1f", AutomobileDatabaseOperate.getOdometer()));
+
+        final ProgressBar pbGas = (ProgressBar)findViewById(R.id.progressBar_gas);
+        pbGas.setProgress((int)AutomobileDatabaseOperate.getGasLevel() * 100 / AutomobileDatabaseOperate.FULL_FUEL);
     }
 
     class DatabaseQuery extends AsyncTask<String, String, String> {
@@ -142,20 +171,20 @@ public class Automobile extends AppCompatActivity {
                 AutomobileDatabaseOperate.setDatabaseHandle(dbWrite);
 
                 publishProgress(new String[]{"10"});
-                sleep();
+                sleep(350);
                 publishProgress(new String[]{"40"});
 
                 //read settings from table
                 AutomobileDatabaseOperate.read();
 
                 publishProgress(new String[]{"80"});
-                sleep();
+                sleep(350);
                 publishProgress(new String[]{"100"});
             }
             catch (Exception e) {
                 return e.getMessage();
             }
-            sleep();
+            sleep(100);
             return "done";
         }
 
@@ -169,13 +198,51 @@ public class Automobile extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             //update driving info
-            ProgressBar pbGas = (ProgressBar)findViewById(R.id.progressBar_gas);
-            pbGas.setProgress(AutomobileDatabaseOperate.getGasLevel());
-            TextView tvKm = (TextView)findViewById(R.id.textView_km);
-            tvKm.setText("" + AutomobileDatabaseOperate.getOdometer());
+            updateInfo();
 
             ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
             pb.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    //udpate odometr and gas when driving
+    class Running extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String ...args) {
+            int speed = 0;
+            while (driveMode != NULL_MODE) {
+                switch (driveMode) {
+                    case P_MODE:
+                        break;
+                    case D_MODE:
+                        speed = AutomobileDatabaseOperate.getSpeedForward();
+                        AutomobileDatabaseOperate.setOdometer(AutomobileDatabaseOperate.getOdometer() + (float)(speed * 1.0/3600));
+                        AutomobileDatabaseOperate.setGasLevel(AutomobileDatabaseOperate.getGasLevel() - (float)(speed * 1.0/3600)/10);
+                        break;
+                    case R_MODE:
+                        speed = AutomobileDatabaseOperate.getSpeedBackward();
+                        AutomobileDatabaseOperate.setOdometer(AutomobileDatabaseOperate.getOdometer() + (float)(speed * 1.0/3600));
+                        AutomobileDatabaseOperate.setGasLevel(AutomobileDatabaseOperate.getGasLevel() - (float)(speed * 1.0/3600)/10);
+                        break;
+                    default:
+                        break;
+                }
+                sleep(1000);
+                if (driveMode != P_MODE && isUpdate) {
+                    publishProgress(new String[]{""});
+                }
+            }
+            return "done";
+        }
+
+        @Override
+        protected void onProgressUpdate(String ...values) {
+            updateInfo();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
         }
     }
 

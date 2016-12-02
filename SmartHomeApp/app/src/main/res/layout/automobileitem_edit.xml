@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_add" />
 
@@ -13,10 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/spinner_add"
-        android:id="@+id/add" />
+        android:id="@+id/btn_add" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_add"
         android:layout_marginTop="50dp"
@@ -29,5 +29,5 @@
         android:layout_below="@id/spinner_add"
         android:layout_marginTop="50dp"
         android:layout_toRightOf="@id/spinner_remove"
-        android:id="@+id/remove" />
+        android:id="@+id/btn_remove" />
 </RelativeLayout>
