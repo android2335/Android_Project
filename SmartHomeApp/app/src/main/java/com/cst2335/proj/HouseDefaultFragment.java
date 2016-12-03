@@ -33,16 +33,26 @@ public class HouseDefaultFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.house_menu, menu );
+        //inflater.inflate(R.menu.house_menu, menu);
+
         super.onCreateOptionsMenu(menu, inflater);
+        //MenuInflater menuInflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.house_menu, menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem mi) {
+        Toast toast;
 
         switch (mi.getItemId()) {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
+                Context context1 = getContext();
+                CharSequence text1 = "Default";
+                int duration1 = Toast.LENGTH_SHORT;
+
+                toast = Toast.makeText(context1, text1, duration1);
+                toast.show();
                 break;
 
             case R.id.About:
@@ -50,7 +60,7 @@ public class HouseDefaultFragment extends Fragment {
                 CharSequence text = "Version 1.0, by Yu Hou";
                 int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, text, duration);
+                toast = Toast.makeText(context, text, duration);
                 toast.show();
                 break;
         }
