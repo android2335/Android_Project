@@ -51,6 +51,8 @@
     <string name="close_house_drawer_message">关闭屋子设置选项</string>
     <string name="house_menu_about">关于</string>
     <string name="house_menu_howToUse">如何使用</string>
+    <string name="house_back_to_main_button">返回傻瓜屋子应用主页</string>
+    <string name="house_default_image_description">傻瓜屋子</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">汽车</string>

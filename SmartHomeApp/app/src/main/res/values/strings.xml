@@ -50,6 +50,8 @@
     <string name="close_house_drawer_message">Close House Settings</string>
     <string name="house_menu_about">About</string>
     <string name="house_menu_howToUse">How To Use</string>
+    <string name="house_back_to_main_button">Back SamrtHome Main</string>
+    <string name="house_default_image_description">SmartHouse</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">Automobile</string>
