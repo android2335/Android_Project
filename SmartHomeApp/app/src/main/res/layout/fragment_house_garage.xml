@@ -10,17 +10,6 @@
     tools:context="com.cst2335.proj.HouseActivity$DummySectionFragment"
     android:gravity="fill_horizontal">
 
-
-  <!--<TextView-->
-      <!--android:layout_width="wrap_content"-->
-      <!--android:layout_height="wrap_content"-->
-      <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-      <!--android:text=""-->
-      <!--android:id="@+id/garageDescription"-->
-      <!--android:layout_below="@+id/garageTitle"-->
-      <!--android:layout_marginTop="@dimen/activity_vertical_margin"-->
-      <!--android:gravity="center_horizontal"/>-->
-
   <Button
       android:text="SamrtHome Main"
       android:layout_width="wrap_content"
