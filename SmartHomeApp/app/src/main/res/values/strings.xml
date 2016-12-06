@@ -52,6 +52,8 @@
     <string name="house_menu_howToUse">How To Use</string>
     <string name="house_back_to_main_button">Back SamrtHome Main</string>
     <string name="house_default_image_description">SmartHouse</string>
+    <string name="house_menu_about_details">Version 1.0, by Yu Hou</string>
+    <string name="house_menu_default_howtorun">Move figure from left to right to open navigation menu</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">Automobile</string>

@@ -53,6 +53,8 @@
     <string name="house_menu_howToUse">如何使用</string>
     <string name="house_back_to_main_button">返回傻瓜屋子应用主页</string>
     <string name="house_default_image_description">傻瓜屋子</string>
+    <string name="house_menu_about_details">1.0 候宇</string>
+    <string name="house_menu_default_howtorun">从左到右滑动打开菜单</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">汽车</string>

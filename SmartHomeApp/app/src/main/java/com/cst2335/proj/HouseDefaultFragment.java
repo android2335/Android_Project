@@ -3,6 +3,7 @@ package com.cst2335.proj;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,10 +34,7 @@ public class HouseDefaultFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //inflater.inflate(R.menu.house_menu, menu);
-
         super.onCreateOptionsMenu(menu, inflater);
-        //MenuInflater menuInflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.house_menu, menu);
     }
 
@@ -47,17 +45,15 @@ public class HouseDefaultFragment extends Fragment {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
-                Context context1 = getContext();
-                CharSequence text1 = "Default";
-                int duration1 = Toast.LENGTH_SHORT;
+                Snackbar snackbar = Snackbar
+                        .make(getView(), getResources().getString(R.string.house_menu_default_howtorun), Snackbar.LENGTH_LONG);
 
-                toast = Toast.makeText(context1, text1, duration1);
-                toast.show();
+                snackbar.show();
                 break;
 
             case R.id.About:
                 Context context = getContext();
-                CharSequence text = "Version 1.0, by Yu Hou";
+                CharSequence text = getResources().getString(R.string.house_menu_about_details);
                 int duration = Toast.LENGTH_SHORT;
 
                 toast = Toast.makeText(context, text, duration);
