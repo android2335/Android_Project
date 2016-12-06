@@ -43,7 +43,7 @@ public class HouseActivity extends AppCompatActivity
             displayFragment(HOUSE_OPTIONS_NOT_SET);
         }
     }
-    
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int option, long l) {
         mHouseNavigationDrawerHelper.handleSelect(option);

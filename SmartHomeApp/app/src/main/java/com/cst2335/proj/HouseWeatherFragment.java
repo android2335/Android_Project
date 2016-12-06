@@ -47,7 +47,6 @@ import java.util.ArrayList;
 public class HouseWeatherFragment extends Fragment {
 
     private static final String TAG = HouseWeatherFragment.class.getSimpleName();
-    private Button mainButton;
 
     protected EditText editText;
     protected ListView cityList;
@@ -86,23 +85,25 @@ public class HouseWeatherFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.house_menu, menu );
+        inflater.inflate(R.menu.house_menu, menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem mi) {
+        Toast toast;
 
         switch (mi.getItemId()) {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
+
                 break;
 
             case R.id.About:
                 Context context = getContext();
-                CharSequence text = "Version 1.0, by Yu Hou";
+                CharSequence text = getResources().getString(R.string.house_menu_about_details);
                 int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, text, duration);
+                toast = Toast.makeText(context, text, duration);
                 toast.show();
                 break;
         }
@@ -224,7 +225,7 @@ public class HouseWeatherFragment extends Fragment {
         weatherView = (ImageView) theView.findViewById(R.id.weather_image_view);
 
         //========  last part =====
-        mainButton = (Button) theView.findViewById(R.id.houseWeatherMainButton);
+        Button mainButton = (Button) theView.findViewById(R.id.houseWeatherMainButton);
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

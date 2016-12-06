@@ -18,7 +18,6 @@ import android.widget.Toast;
 public class HouseDefaultFragment extends Fragment {
 
     private static final String TAG = HouseDefaultFragment.class.getSimpleName();
-    private Button mainButton;
 
     @Override
     public void onAttach(Context context) {
@@ -45,10 +44,12 @@ public class HouseDefaultFragment extends Fragment {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
-                Snackbar snackbar = Snackbar
-                        .make(getView(), getResources().getString(R.string.house_menu_default_howtorun), Snackbar.LENGTH_LONG);
+                if (getView() != null) {
+                    Snackbar snackbar = Snackbar
+                            .make(getView(), getResources().getString(R.string.house_menu_default_howtorun), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
 
-                snackbar.show();
                 break;
 
             case R.id.About:
@@ -69,8 +70,7 @@ public class HouseDefaultFragment extends Fragment {
 
         View theView = inflater.inflate(R.layout.fragment_house_default, container, false);
 
-        mainButton = (Button) theView.findViewById(R.id.houseDefaultMainButton);
-
+        Button mainButton = (Button) theView.findViewById(R.id.houseDefaultMainButton);
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
