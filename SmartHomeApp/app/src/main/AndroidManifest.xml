@@ -62,10 +62,18 @@
             android:name=".HouseActivity"
             android:label="@string/title_house_activity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name=".LivingRoomIntroduction"
+            android:label="@string/title_livingroom_introduction"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".LivingRoomItemListActivity"
             android:label="@string/title_livingroomitem_list"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".LivingRoomItemDetailActivity"
             android:label="@string/title_livingroomitem_detail"

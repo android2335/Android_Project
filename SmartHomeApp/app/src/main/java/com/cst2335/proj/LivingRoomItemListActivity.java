@@ -58,37 +58,11 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem mi){
         switch(mi.getItemId()){
             case R.id.menu_help:
-                Toast.makeText(LivingRoomItemListActivity.this, "Help Menu clicked",Toast.LENGTH_LONG).show();
-                setMessage("Help Menu clicked");
-
-                final Dialog dialog = new Dialog(this);
-                dialog.setContentView(R.layout.dialog_help);
-                dialog.setTitle("Help Instruction");
-
-                // set the custom dialog components - text, image and button
-                TextView help_header = (TextView) dialog.findViewById(R.id.helpHeader);
-                help_header.setText(R.string.help_header);
-
-                TextView help_author = (TextView) dialog.findViewById(R.id.helpAuthor);
-                help_author.setText(R.string.help_author);
-
-                TextView help_version = (TextView) dialog.findViewById(R.id.helpVersion);
-                help_version.setText(R.string.help_version);
-
-                TextView help_body = (TextView) dialog.findViewById(R.id.helpBody);
-                help_body.setText(R.string.help_body);
-
-                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-                // if button is clicked, close the dialog
-                dialogButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-
+                Toast.makeText(LivingRoomItemListActivity.this, "Help: If you delete an item by accident, " +
+                        "you can recover it by reload the app. If you want to permanently delete an item, " +
+                        "you need to modify the app's initialization " +
+                        "(we will improve this in version 2.0).",Toast.LENGTH_LONG).show();
+                setMessage("Help Menu is clicked");
                 return true;
         }
         return false;

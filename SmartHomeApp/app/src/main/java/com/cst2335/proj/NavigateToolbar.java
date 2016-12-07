@@ -40,7 +40,7 @@ public class NavigateToolbar extends AppCompatActivity {
         switch(mi.getItemId()){
             case R.id.SmartLivingRoom:
                 setMessage("You selected Living Room");
-                startActivity(new Intent(NavigateToolbar.this, LivingRoomItemListActivity.class));
+                startActivity(new Intent(NavigateToolbar.this, LivingRoomIntroduction.class));
                 return true;
 
             case R.id.SmartKitchen:

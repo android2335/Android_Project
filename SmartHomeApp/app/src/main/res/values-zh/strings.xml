@@ -10,28 +10,27 @@
     <!-- Living Room part add here -->
     <string name="LivingRoomText">客厅</string>
     <string name="LivingRoomButtonText">客厅</string>
-        <string name="title_livingroomitem_list">LivingRoomItems
+    <string name="title_livingroom_introduction">客厅联上了</string>
+    <string name="title_livingroomitem_list">客厅物品名单
         \u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020
         \u0020\u0020\u0020\u0020\u0020\u0020
-        ClickCount</string>
-    <string name="title_livingroomitem_detail">客厅物品明细</string>
+        键击次数</string>
+    <string name="title_livingroomitem_detail">客厅物品详细</string>
     <string name="help_menu">帮助菜单</string>
-    <string name="dialog_message">Do you want to delete this item?</string>
+    <string name="dialog_message">显示该物品详细 ........ 还是删除?</string>
     <string name="dialog_title"> </string>
-    <string name="help_header"><b>Help Menu</b></string>
+    <string name="help_header"><b>关于这个应用</b></string>
     <string name="help_author">Author: Quan Long</string>
     <string name="help_version">Living Room Use Guide version 1.0 </string>
     <string name="help_body"><p>Click an item will show its detailed status on the right or in a new page.</p>
                         <p>The frequency of click on this item is recorded as ClickCount, shown besides of the item name.</p>
                         <p>The order of item list is from the most clicked to the least. </p></string>
-    <string name="delete_item">Delete!</string>
-    <string name="show_detail">Show Details</string>
+    <string name="delete_item">删除 (肯定?)</string>
+    <string name="show_detail">显示物品详细</string>
     <string name="addItemButton">添加物品</string>
-    <string name="ok">Yes</string>
-    <string name="cancel">Cancel</string>
     <string name="color_1">红色</string>
     <string name="color_2">绿色</string>
     <string name="color_3">蓝色</string>
