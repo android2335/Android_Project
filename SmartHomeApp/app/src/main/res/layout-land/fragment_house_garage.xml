@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.cst2335.proj.HouseActivity"
+    android:gravity="fill_horizontal">
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:text="@string/house_garage_options"
+      android:id="@+id/garageTitle"
+      android:gravity="center_vertical"
+      android:layout_marginTop="20dp"
+      android:layout_alignParentTop="true"
+      android:layout_toEndOf="@+id/house_garage_door_switch" />
+
+
+  <!-- Garage door -->
+  <Switch
+      android:text="@string/house_garage_door"
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:id="@+id/house_garage_door_switch"
+      android:layout_below="@+id/garageTitle"
+      android:layout_alignParentStart="true"
+      android:layout_marginStart="25dp"
+      android:layout_marginTop="30dp" />
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:id="@+id/garageDoorImage"
+      android:src="@drawable/house_garage_open"
+      android:layout_alignBottom="@+id/house_garage_door_switch"
+      android:layout_alignEnd="@+id/garageTitle"
+      android:contentDescription="@string/house_garage_door_description"/>
+
+  <!-- Garage light -->
+  <Switch
+      android:text="@string/house_garage_light"
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:id="@+id/house_garage_light_switch"
+      android:layout_below="@+id/house_garage_door_switch"
+      android:layout_alignStart="@+id/house_garage_door_switch"
+      android:layout_marginTop="49dp" />
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:id="@+id/garageLightImage"
+      android:src="@drawable/house_lighton"
+      android:layout_alignBottom="@+id/house_garage_light_switch"
+      android:layout_alignStart="@+id/garageDoorImage"
+      android:contentDescription="@string/house_garage_light_description"/>
+
+  <Button
+      android:text="@string/house_back_to_main_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/houseGarageMainButton"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
