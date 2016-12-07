@@ -49,7 +49,6 @@ public class HouseDefaultFragment extends Fragment {
                             .make(getView(), getResources().getString(R.string.house_menu_default_howtorun), Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
-
                 break;
 
             case R.id.About:

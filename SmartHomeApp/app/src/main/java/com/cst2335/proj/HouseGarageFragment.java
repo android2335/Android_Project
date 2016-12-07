@@ -3,6 +3,7 @@ package com.cst2335.proj;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class HouseGarageFragment extends Fragment {
 
     private static final String TAG = HouseGarageFragment.class.getSimpleName();
+    private ImageView doorImage;
+    private ImageView doorlightImage;
 
     @Override
     public void onAttach(Context context) {
@@ -43,8 +49,13 @@ public class HouseGarageFragment extends Fragment {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
-
+                if (getView() != null) {
+                    Snackbar snackbar = Snackbar
+                            .make(getView(), getResources().getString(R.string.house_menu_garage_howtorun), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
                 break;
+
 
             case R.id.About:
                 Context context = getContext();
@@ -64,6 +75,56 @@ public class HouseGarageFragment extends Fragment {
 
         View theView = inflater.inflate(R.layout.fragment_house_garage, container, false);
 
+        //house_garage_door switch & house_garage_light switch with images
+        Switch switchDoorButton = (Switch) theView.findViewById(R.id.house_garage_door_switch);
+        Switch switchLightButton = (Switch) theView.findViewById(R.id.house_garage_light_switch);
+        doorImage = (ImageView) theView.findViewById(R.id.garageDoorImage);
+        doorlightImage = (ImageView) theView.findViewById(R.id.garageLightImage);
+
+        //TODO add logic here to read from memory for garage door and light status
+        //TODO replace the below code
+        switchDoorButton.setChecked(true);
+        switchLightButton.setChecked(true);
+
+        if (switchDoorButton.isChecked()) {
+            doorImage.setImageResource(R.drawable.house_garage_open);
+            doorlightImage.setImageResource(R.drawable.house_lighton);
+        } else {
+            doorImage.setImageResource(R.drawable.house_garage_closed);
+            doorlightImage.setImageResource(R.drawable.house_lightoff);
+        }
+
+        if (switchLightButton.isChecked()) {
+            doorlightImage.setImageResource(R.drawable.house_lighton);
+        } else {
+            doorlightImage.setImageResource(R.drawable.house_lightoff);
+        }
+
+        switchDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
+                if (bChecked) {
+                    doorImage.setImageResource(R.drawable.house_garage_open);
+                    doorlightImage.setImageResource(R.drawable.house_lighton);
+                } else {
+                    doorImage.setImageResource(R.drawable.house_garage_closed);
+                    doorlightImage.setImageResource(R.drawable.house_lightoff);
+                }
+            }
+        });
+
+        switchLightButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
+                if (bChecked) {
+                    doorlightImage.setImageResource(R.drawable.house_lighton);
+                } else {
+                    doorlightImage.setImageResource(R.drawable.house_lightoff);
+                }
+            }
+        });
+
+        //mainButton
         Button mainButton = (Button) theView.findViewById(R.id.houseGarageMainButton);
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
