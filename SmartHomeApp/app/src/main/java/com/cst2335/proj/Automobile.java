@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,33 +16,38 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+/**
+ * class Automobile
+ */
 public class Automobile extends AppCompatActivity {
 
-    protected SQLiteDatabase dbWrite;   //database for write
-
-    protected TextView tvSpeed;   //speed
-    protected TextView tvKm;      //kilometer
-    protected boolean kmExist;
-    protected boolean gasExist;
-
+    /**database for write*/
+    protected SQLiteDatabase dbWrite;
+    /**speed*/
+    protected TextView tvSpeed;
+    /**odometer*/
+    protected TextView tvKm;
+    /**driving mode*/
     protected int driveMode = P_MODE;
     protected static final int P_MODE = 100;
     protected static final int D_MODE = 101;
     protected static final int R_MODE = 102;
     protected static final int NULL_MODE = 109;
-    protected boolean isUpdate = true;  //update information or not
+    /**update information or not*/
+    protected boolean isUpdate = true;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_automobile);
 
-            //textviews
-        final TextView tvSpeed = (TextView)findViewById(R.id.textView_speed);
-        final TextView tvKm = (TextView)findViewById(R.id.textView_km);
+        //textviews
+        tvSpeed = (TextView)findViewById(R.id.textView_speed);
+        tvKm = (TextView)findViewById(R.id.textView_km);
 
         //button about
         Button btnAbout = (Button)findViewById(R.id.button_about);
@@ -56,6 +62,7 @@ public class Automobile extends AppCompatActivity {
                 builder.setMessage(strAbout);
                 builder.setTitle("About");
                 builder.create().show();
+                AutomobileDatabaseOperate.setGasLevel((float)0.2);
             }
         });
 
@@ -132,6 +139,10 @@ public class Automobile extends AppCompatActivity {
         dbWrite.close();
     }
 
+    /**
+     * sleep
+     * @param millisec time to sleep in milliseconds
+     */
     protected void sleep(int millisec) {
         try {
             Thread.sleep(millisec);
@@ -141,8 +152,10 @@ public class Automobile extends AppCompatActivity {
         }
     }
 
+    /**
+     * update driving information
+     */
     protected void updateInfo() {
-        final TextView tvSpeed = (TextView)findViewById(R.id.textView_speed);
         int speed = 0;
         if (driveMode == D_MODE) {
             speed = AutomobileDatabaseOperate.getSpeedForward();
@@ -159,6 +172,9 @@ public class Automobile extends AppCompatActivity {
         pbGas.setProgress((int)AutomobileDatabaseOperate.getGasLevel() * 100 / AutomobileDatabaseOperate.FULL_FUEL);
     }
 
+    /**
+     * class DatabaseQuery, used for reading database
+     */
     class DatabaseQuery extends AsyncTask<String, String, String> {
 
         @Override
@@ -204,7 +220,9 @@ public class Automobile extends AppCompatActivity {
         }
     }
 
-    //udpate odometr and gas when driving
+    /**
+     * class Running, used to update odometer and fuel
+     */
     class Running extends AsyncTask<String, String, String> {
 
         @Override
@@ -238,6 +256,29 @@ public class Automobile extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String ...values) {
             updateInfo();
+
+
+            //check fuel
+            float gas = AutomobileDatabaseOperate.getGasLevel();
+            if (gas < 0.1) {   //stop
+                //set stop
+                RadioButton rbP = (RadioButton)findViewById(R.id.radioButton_P);
+                RadioButton rbD = (RadioButton)findViewById(R.id.radioButton_D);
+                RadioButton rbR = (RadioButton)findViewById(R.id.radioButton_R);
+                rbP.setChecked(true);
+                rbD.setChecked(false);
+                rbR.setChecked(false);
+                driveMode = P_MODE;
+                tvSpeed.setText("0");
+
+                //snackbar
+                Snackbar.make(findViewById(android.R.id.content), "Out of Gas!!!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+            else if (gas < 1) {  //remind
+                Toast toast = Toast.makeText(Automobile.this, "There is no much gas left!!!", Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
 
         @Override

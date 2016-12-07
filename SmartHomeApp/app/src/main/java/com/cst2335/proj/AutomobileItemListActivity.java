@@ -39,6 +39,7 @@ public class AutomobileItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    /**request code of item edit activity*/
     private final int EDIT_REQUEST_CODE = 100;
 
     static {

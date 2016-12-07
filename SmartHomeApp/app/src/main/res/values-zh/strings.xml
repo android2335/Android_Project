@@ -38,10 +38,30 @@
     <string name="color_4">黄色</string>
 
     <!-- Kitchen part add here -->
-    <string name="KitchenText">厨房</string>
-    <string name="KitchenButtonText">厨房</string>
-    <string name="action_settings">设置</string>
+    <string name="title_activity_kitchen">厨房控制</string>
+    <string name="delete">删除</string>
+    <string name="add">增加</string>
+    <string name="delete_title">请选择需要删除的号码:</string>
+    <string name="title_activity_microwave">微波炉控制</string>
+    <string name="cooking_time">加热时间:</string>
+    <string name="hint1">00:00</string>
+    <string name="microwave_start">启动</string>
+    <string name="microwave_stop">停止</string>
+    <string name="microwave_reset">时间复位</string>
+    <string name="time_unit">分:秒</string>
+    <string name="title_activity_fridge">冰箱控制</string>
+    <string name="fridge_label">冷藏温度:</string>
+    <string name="freezer_label">冷冻温度:</string>
+    <string name="temp_unit">\u2103</string>
+    <string name="fridge_temp_setting">设置冷藏温度 (\u2103)</string>
+    <string name="freezer_temp_setting">设置冷冻温度 (\u2103)"</string>
+    <string name="hint2">+00</string>
+    <string name="hint3">-00</string>
+    <string name="title_activity_main_light">灯光控制</string>
+    <string name="dimmable">渐进变化</string>
+    <string name="off_on">关/开</string>
     <string name="control">控制</string>
+    <string name="action_settings">动作设置</string>
 
     <!-- House part add here -->
     <string name="HouseSettingsText">屋子设置</string>
