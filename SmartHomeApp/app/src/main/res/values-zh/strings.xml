@@ -61,6 +61,7 @@
     <string name="house_menu_garage_howtorun">打开车库门同时开灯，车库灯可以单独开关</string>
     <string name="house_garage_door_description">车库门图片</string>
     <string name="house_garage_light_description">车库灯图片</string>
+    <string name="house_garage_status">车库状态</string>
     <string name="house_weather_add_city">添加城市</string>
     <string name="house_weather_remove_city">移除城市</string>
     <string name="house_weather_city_hint">城市名字</string>

@@ -60,6 +60,7 @@
     <string name="house_menu_garage_howtorun">Open/close Garage Door also turn on/off lights; light can turn on/off separately</string>
     <string name="house_garage_door_description">Garage Door Image</string>
     <string name="house_garage_light_description">Garage Light Image</string>
+    <string name="house_garage_status">garagestatus</string>
     <string name="house_weather_add_city">Add City</string>
     <string name="house_weather_remove_city">Remove City</string>
     <string name="house_weather_city_hint">Enter City Name</string>
