@@ -71,6 +71,21 @@
     <string name="close_house_drawer_message">关闭屋子设置选项</string>
     <string name="house_menu_about">关于</string>
     <string name="house_menu_howToUse">如何使用</string>
+    <string name="house_back_to_main_button">返回傻瓜屋子应用主页</string>
+    <string name="house_default_image_description">傻瓜屋子</string>
+    <string name="house_menu_about_details">1.0 候宇</string>
+    <string name="house_menu_default_howtorun">从左到右滑动打开菜单</string>
+    <string name="house_garage_options">车库选项</string>
+    <string name="house_garage_door">车库门</string>
+    <string name="house_garage_light">车库灯</string>
+    <string name="house_menu_garage_howtorun">打开车库门同时开灯，车库灯可以单独开关</string>
+    <string name="house_garage_door_description">车库门图片</string>
+    <string name="house_garage_light_description">车库灯图片</string>
+    <string name="house_garage_status">车库状态</string>
+    <string name="house_weather_add_city">添加城市</string>
+    <string name="house_weather_remove_city">移除城市</string>
+    <string name="house_weather_city_hint">城市名字</string>
+    <string name="house_weather_icon">天气图标</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">汽车</string>

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,8 @@ public class HouseActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.house_activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mHouseNavigationDrawerHelper = new HouseNavigationDrawerHelper();
         mHouseNavigationDrawerHelper.init(this, this);
@@ -36,13 +39,9 @@ public class HouseActivity extends AppCompatActivity
         int houseOption = startupIntent.getIntExtra(EXTRA_HOUSE_OPTION, HOUSE_OPTIONS_NOT_SET);
         if (houseOption != HOUSE_OPTIONS_NOT_SET) {
             mHouseNavigationDrawerHelper.setSelection(houseOption);
-        }else {
+        } else {
             displayFragment(HOUSE_OPTIONS_NOT_SET);
         }
-    }
-
-    public HouseNavigationDrawerHelper getHouseNavigationDrawer() {
-        return mHouseNavigationDrawerHelper;
     }
 
     @Override
@@ -114,7 +113,7 @@ public class HouseActivity extends AppCompatActivity
                 }
             }
         } catch (Exception e) {
-
+            Log.d(ACTIVITY_NAME, e.getMessage());
         }
         Log.i(ACTIVITY_NAME, String.format("HouseActivity.isOnBackStack Tag(%s) (%s)", tag, result ? "true" : "false"));
 
@@ -126,12 +125,6 @@ public class HouseActivity extends AppCompatActivity
         super.onPostCreate(savedInstanceState);
         mHouseNavigationDrawerHelper.syncState();
     }
-
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        mHouseNavigationDrawerHelper.handleOnPrepareOptionsMenu(menu);
-//        return super.onPrepareOptionsMenu(menu);
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

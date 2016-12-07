@@ -48,15 +48,6 @@
           android:layout_marginStart="14dp" />
 
     </LinearLayout>
-  </LinearLayout>
-
-  <!-- Add Weather Image -->
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/listLayout"
-      android:layout_above="@+id/houseWeatherMainButton">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -66,6 +57,16 @@
         android:minWidth="150dp"
         android:minHeight="150dp"
         android:contentDescription="@string/house_weather_icon"/>
+
+  </LinearLayout>
+
+  <!-- Add Weather Image -->
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/listLayout"
+      android:layout_above="@+id/houseWeatherMainButton">
 
     <ProgressBar
         android:layout_width="match_parent"

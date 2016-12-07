@@ -70,6 +70,21 @@
     <string name="close_house_drawer_message">Close House Settings</string>
     <string name="house_menu_about">About</string>
     <string name="house_menu_howToUse">How To Use</string>
+    <string name="house_back_to_main_button">Back SamrtHome Main</string>
+    <string name="house_default_image_description">SmartHouse</string>
+    <string name="house_menu_about_details">Version 1.0, by Yu Hou</string>
+    <string name="house_menu_default_howtorun">Move figure from left to right to open navigation menu</string>
+    <string name="house_garage_options">Garage Options</string>
+    <string name="house_garage_door">Garage Door</string>
+    <string name="house_garage_light">Garage Light</string>
+    <string name="house_menu_garage_howtorun">Open/close Garage Door also turn on/off lights; light can turn on/off separately</string>
+    <string name="house_garage_door_description">Garage Door Image</string>
+    <string name="house_garage_light_description">Garage Light Image</string>
+    <string name="house_garage_status">garagestatus</string>
+    <string name="house_weather_add_city">Add City</string>
+    <string name="house_weather_remove_city">Remove City</string>
+    <string name="house_weather_city_hint">Enter City Name</string>
+    <string name="house_weather_icon">Weather Icon Image</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">Automobile</string>
