@@ -62,7 +62,6 @@ public class Automobile extends AppCompatActivity {
                 builder.setMessage(strAbout);
                 builder.setTitle("About");
                 builder.create().show();
-                AutomobileDatabaseOperate.setGasLevel((float)0.2);
             }
         });
 
