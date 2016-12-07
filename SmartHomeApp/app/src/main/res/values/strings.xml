@@ -37,10 +37,30 @@
     <string name="color_4">Yellow</string>
 
     <!-- Kitchen part add here -->
-    <string name="KitchenText">Kitchen</string>
-    <string name="KitchenButtonText">Kitchen</string>
-    <string name="action_settings">Settings</string>
-    <string name="control">Control</string>
+    <string name="title_activity_kitchen">KitchenActivity</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>=
+    <string name="delete_title">Please give the item number to be deleted:</string>
+    <string name="title_activity_microwave">Microwave Control</string>
+    <string name="cooking_time">Timer:</string>
+    <string name="hint1">00:00</string>
+    <string name="microwave_start">Start</string>
+    <string name="microwave_stop">Stop</string>
+    <string name="microwave_reset">Reset Time</string>
+    <string name="time_unit">Min:Sec</string>
+    <string name="title_activity_fridge">Fridge and Freezer Control</string>
+    <string name="fridge_label">Fridge  Temperature:</string>
+    <string name="freezer_label">Freezer Temperature:</string>
+    <string name="temp_unit">\u2103</string>
+    <string name="fridge_temp_setting">Set Fridge Temperature (\u2103)</string>
+    <string name="freezer_temp_setting">Set Freezer Temperature (\u2103)"</string>
+    <string name="hint2">+00</string>
+    <string name="hint3">-00</string>
+    <string name="title_activity_main_light">Main Light Control</string>
+    <string name="dimmable">Dimmable</string>
+    <string name="off_on">Off/On</string>
+    <string name="control">control</string>
+    <string name="action_settings">action settings</string>
 
     <!-- House part add here -->
     <string name="HouseSettingsText">House Settings</string>

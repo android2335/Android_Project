@@ -21,6 +21,8 @@ public class AutomobileItemEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.automobileitem_edit);
 
+        setTitle("Edit Setting Items");
+
         //item list
         final Spinner spinAdd = (Spinner)findViewById(R.id.spinner_add);
         final Spinner spinRemove = (Spinner)findViewById(R.id.spinner_remove);
