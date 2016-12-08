@@ -37,35 +37,36 @@
       android:layout_toEndOf="@+id/house_temperature" />
 
   <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="@string/house_temp_enter"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:id="@+id/house_temp_enter"
+    android:layout_below="@+id/house_temperature"/>
+
+  <EditText
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="20dp"
-      android:text="@string/house_temperature_schedule"
+      android:text="@string/house_temp_enter"
       android:textAppearance="?android:attr/textAppearanceMedium"
-      android:id="@+id/house_schedule_temperature"
-      android:layout_below="@+id/house_temperature"/>
+      android:id="@+id/house_temp_edit_text"
+      android:layout_toEndOf="@+id/house_temp_enter"
+      android:layout_alignBottom="@+id/house_temp_enter"/>
 
   <Button
-      android:text="@string/house_temperature_add"
+      android:text="@string/house_temperature_schedule_time"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/house_schedule_plus_button"
-      android:layout_below="@+id/house_temperature"
-      android:layout_toEndOf="@+id/house_schedule_temperature"/>
-
-  <Button
-      android:text="@string/house_temperature_remove"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/house_schedule_minus_button"
-      android:layout_toEndOf="@+id/house_schedule_plus_button"
-      android:layout_below="@+id/house_temperature"/>
+      android:id="@+id/house_schedule_add_button"
+      android:layout_below="@+id/house_temp_edit_text"/>
 
   <ListView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:id="@+id/house_temp_listView"
-      android:layout_below="@+id/house_schedule_minus_button"
+      android:layout_below="@+id/house_schedule_add_button"
       android:layout_above="@+id/houseTempMainButton" />
 
   <Button

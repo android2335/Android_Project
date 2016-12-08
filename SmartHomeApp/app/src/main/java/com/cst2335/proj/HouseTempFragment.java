@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class HouseTempFragment extends Fragment {
     private SQLiteDatabase sqlDB;
     private String[] allSchedules = { HouseDataDatabaseHelper.HOUSE_TEMP_KEY_ID,
             HouseDataDatabaseHelper.HOUSE_TEMP_RECORD };
+
+    private String temperatureString = "25";  //25 as default temperature value
 
     @Override
     public void onAttach(Context context) {
@@ -82,9 +85,11 @@ public class HouseTempFragment extends Fragment {
 
         View theView = inflater.inflate(R.layout.fragment_house_temperature, container, false);
 
-        TextView currentTempTextView = (TextView) theView.findViewById(R.id.house_temperature_editText);
-        Button addScheduleButton = (Button) theView.findViewById(R.id.house_schedule_plus_button);
-        Button removeScheduleButton = (Button) theView.findViewById(R.id.house_schedule_minus_button);
+//        TextView currentTempTextView = (TextView) theView.findViewById(R.id.house_temperature_editText);
+
+
+//        Button addScheduleButton = (Button) theView.findViewById(R.id.house_schedule_plus_button);
+
         ListView scheduleList = (ListView) theView.findViewById(R.id.house_temp_listView);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -120,29 +125,31 @@ public class HouseTempFragment extends Fragment {
         scheduleList.setAdapter(houseTempAdapter);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        addScheduleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                String city = editText.getText().toString().trim();
-//                if( city.length() == 0 || existCityRecord(city)) {
-//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-//                    builder1.setMessage("Please write a valid city name, and no duplicate city");
-//                    builder1.setCancelable(true);
-//
-//                    AlertDialog alert11 = builder1.create();
-//                    alert11.show();
-//                }else {
-//                    list.add(city.trim());
-//                    editText.setText(""); //clear the text
-//                    cityAdapter.notifyDataSetChanged();
-//
-//                    ContentValues values = new ContentValues();
-//                    values.put(HouseDataDatabaseHelper.CITIES_NAME, city);
-//                    sqlDB.insert(HouseDataDatabaseHelper.CITIES_TABLE_NAME, null,
-//                            values);
-//                }
-            }
-        });
+
+
+//        addScheduleButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                String city = editText.getText().toString().trim();
+////                if( city.length() == 0 || existCityRecord(city)) {
+////                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+////                    builder1.setMessage("Please write a valid city name, and no duplicate city");
+////                    builder1.setCancelable(true);
+////
+////                    AlertDialog alert11 = builder1.create();
+////                    alert11.show();
+////                }else {
+////                    list.add(city.trim());
+////                    editText.setText(""); //clear the text
+////                    cityAdapter.notifyDataSetChanged();
+////
+////                    ContentValues values = new ContentValues();
+////                    values.put(HouseDataDatabaseHelper.CITIES_NAME, city);
+////                    sqlDB.insert(HouseDataDatabaseHelper.CITIES_TABLE_NAME, null,
+////                            values);
+////                }
+//            }
+//        });
 
 
         //========  last part =====
