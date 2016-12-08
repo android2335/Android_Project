@@ -67,6 +67,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="20dp"
+        android:layout_below="@id/listLayout"
         android:layout_above="@+id/weather_current_temperature_textview"
         android:visibility="invisible"
         tools:visibility="invisible"/>
