@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.bob.cst2335project.MicrowaveActivity"
+    tools:context="com.cst2335.proj.MicrowaveActivity"
     tools:showIn="@layout/activity_microwave">
 
     <TextView
@@ -47,7 +47,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="buttonClick"
         android:text="@string/microwave_reset"
         android:id="@+id/resetButton"
         android:layout_marginTop="20dp"
@@ -57,7 +56,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="buttonClick"
         android:text="@string/microwave_start"
         android:id="@+id/startButton"
         android:layout_marginTop="40dp"
@@ -66,7 +64,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="buttonClick"
         android:text="@string/microwave_stop"
         android:id="@+id/stopButton"
         android:layout_marginTop="40dp"
