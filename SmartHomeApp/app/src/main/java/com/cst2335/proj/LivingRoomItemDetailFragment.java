@@ -2,6 +2,7 @@ package com.cst2335.proj;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -422,6 +423,8 @@ public class LivingRoomItemDetailFragment extends Fragment {
             //@Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Enter button pressed!", Toast.LENGTH_SHORT).show();
+                LivingRoomItemDetailFragment.this.startActivity(new Intent(getActivity(), LivingRoom_TVEnterTheme.class));
+
             }
         });
 

@@ -80,6 +80,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LivingRoomItemListActivity" />
         </activity>
+
+        <activity
+            android:name=".LivingRoom_TVEnterTheme"
+            android:label="@string/title_livingroom_tv_enter"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

@@ -35,6 +35,7 @@
     <string name="color_2">Green</string>
     <string name="color_3">Blue</string>
     <string name="color_4">Yellow</string>
+    <string name="title_livingroom_tv_enter">Too Dark Here</string>
 
     <!-- Kitchen part add here -->
     <string name="title_activity_kitchen">KitchenActivity</string>
