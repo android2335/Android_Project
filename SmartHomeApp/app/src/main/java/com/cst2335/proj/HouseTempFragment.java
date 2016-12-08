@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,7 +71,11 @@ public class HouseTempFragment extends Fragment {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
-
+                if (getView() != null) {
+                    Snackbar snackbar = Snackbar
+                            .make(getView(), getResources().getString(R.string.house_menu_temperature_howtorun), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
                 break;
 
             case R.id.About:

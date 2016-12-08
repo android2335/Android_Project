@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -95,7 +96,11 @@ public class HouseWeatherFragment extends Fragment {
 
             case R.id.HowToRun:
                 Log.d("Toolbar", "HowToRun selected");
-
+                if (getView() != null) {
+                    Snackbar snackbar = Snackbar
+                            .make(getView(), getResources().getString(R.string.house_menu_weather_howtorun), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
                 break;
 
             case R.id.About:
