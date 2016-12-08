@@ -242,6 +242,16 @@ public class HouseWeatherFragment extends Fragment {
         return theView;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // The activity is about to be destroyed.
+        Log.i(TAG, "onDestroy()");
+
+        //Lab 5 - close the database that you opened in onCreate()
+        houseDataDatabaseHelper.close();
+    }
+
     private boolean existCityRecord(String city) {
         return list.contains(city);
     }
