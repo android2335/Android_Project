@@ -1,5 +1,6 @@
 package com.cst2335.proj;
 
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -22,9 +23,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.codetroopers.betterpickers.timepicker.TimePickerBuilder;
+
 import java.util.ArrayList;
+
+import static android.support.design.R.styleable.AlertDialog;
 
 public class HouseTempFragment extends Fragment {
 
@@ -37,7 +43,8 @@ public class HouseTempFragment extends Fragment {
     private String[] allSchedules = { HouseDataDatabaseHelper.HOUSE_TEMP_KEY_ID,
             HouseDataDatabaseHelper.HOUSE_TEMP_RECORD };
 
-    private String temperatureString = "25";  //25 as default temperature value
+    private EditText scheduleTempEditText;
+    private int hour, minute;
 
     @Override
     public void onAttach(Context context) {
@@ -85,10 +92,14 @@ public class HouseTempFragment extends Fragment {
 
         View theView = inflater.inflate(R.layout.fragment_house_temperature, container, false);
 
-//        TextView currentTempTextView = (TextView) theView.findViewById(R.id.house_temperature_editText);
+        TextView currentTempTextView = (TextView) theView.findViewById(R.id.house_temperature_editText);
+        //TODO: later maybe use sensor to set the actual temperature in house
+        currentTempTextView.setText("20 °C");
 
+        scheduleTempEditText = (EditText)theView.findViewById(R.id.house_temp_edit_text);
 
-//        Button addScheduleButton = (Button) theView.findViewById(R.id.house_schedule_plus_button);
+        Button addScheduleButton = (Button) theView.findViewById(R.id.house_schedule_add_button);
+
 
         ListView scheduleList = (ListView) theView.findViewById(R.id.house_temp_listView);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -125,19 +136,33 @@ public class HouseTempFragment extends Fragment {
         scheduleList.setAdapter(houseTempAdapter);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+        addScheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                String tempSetValue = scheduleTempEditText.getText().toString().trim();
+//                if(!isValidTemp(tempSetValue)) {
+//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+//                    builder1.setMessage("Please enter temperature value between 0 ~ 40");
+//                    builder1.setCancelable(true);
+//
+//                    AlertDialog alert11 = builder1.create();
+//                    alert11.show();
+//                }
+                //now set the time
+                TimePickerBuilder tpb = new TimePickerBuilder()
+                        .setFragmentManager(getActivity().getSupportFragmentManager())
+                        .setStyleResId(R.style.BetterPickersDialogFragment);
+                tpb.show();
 
 
-//        addScheduleButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
 ////                String city = editText.getText().toString().trim();
 ////                if( city.length() == 0 || existCityRecord(city)) {
-////                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-////                    builder1.setMessage("Please write a valid city name, and no duplicate city");
-////                    builder1.setCancelable(true);
-////
-////                    AlertDialog alert11 = builder1.create();
-////                    alert11.show();
+//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+//                    builder1.setMessage("Please write a valid city name, and no duplicate city");
+//                    builder1.setCancelable(true);
+//
+//                    AlertDialog alert11 = builder1.create();
+//                    alert11.show();
 ////                }else {
 ////                    list.add(city.trim());
 ////                    editText.setText(""); //clear the text
@@ -148,8 +173,8 @@ public class HouseTempFragment extends Fragment {
 ////                    sqlDB.insert(HouseDataDatabaseHelper.CITIES_TABLE_NAME, null,
 ////                            values);
 ////                }
-//            }
-//        });
+            }
+        });
 
 
         //========  last part =====
@@ -163,6 +188,23 @@ public class HouseTempFragment extends Fragment {
         });
 
         return theView;
+    }
+
+    private boolean isValidTemp(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        int value = Integer.parseInt(s);
+        if(value >=0 && value <=40) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 

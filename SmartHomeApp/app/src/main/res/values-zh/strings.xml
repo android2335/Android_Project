@@ -69,6 +69,7 @@
     <string name="house_temp_image_description">室内气温图标</string>
     <string name="house_current_temperature">现在室内气温</string>
     <string name="house_temp_enter">输入温度 (°C)</string>
+    <string name="house_temp_time_enter">输入时间 (HH:MM) (24小时格式)</string>
     <string name="house_temperature_schedule_time">设定时间</string>
 
     <!-- Automobile part add here -->

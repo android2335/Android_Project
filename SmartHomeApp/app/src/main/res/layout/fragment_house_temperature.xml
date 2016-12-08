@@ -31,6 +31,7 @@
   <TextView
       android:layout_width="match_parent"
       android:id="@+id/house_temperature_editText"
+      android:layout_marginTop="20dp"
       android:layout_height="30dp"
       android:layout_below="@+id/tempteratureImage"
       android:layout_alignBottom="@+id/house_temperature"
@@ -49,18 +50,38 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="20dp"
-      android:text="@string/house_temp_enter"
+      android:maxLines="1"
       android:textAppearance="?android:attr/textAppearanceMedium"
       android:id="@+id/house_temp_edit_text"
       android:layout_toEndOf="@+id/house_temp_enter"
       android:layout_alignBottom="@+id/house_temp_enter"/>
+
+  <!--<TextView-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_marginTop="20dp"-->
+      <!--android:text="@string/house_temp_time_enter"-->
+      <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+      <!--android:id="@+id/house_temp_time_enter"-->
+      <!--android:layout_below="@+id/house_temp_enter"/>-->
+
+  <!--<EditText-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_marginTop="20dp"-->
+      <!--android:maxLines="1"-->
+      <!--android:hint="@string/house_temp_time_enter"-->
+      <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+      <!--android:id="@+id/house_temp_time_edit_text"-->
+      <!--android:layout_toEndOf="@+id/house_temp_time_enter"-->
+      <!--android:layout_alignBottom="@+id/house_temp_time_enter"/>-->
 
   <Button
       android:text="@string/house_temperature_schedule_time"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:id="@+id/house_schedule_add_button"
-      android:layout_below="@+id/house_temp_edit_text"/>
+      android:layout_below="@+id/house_temp_enter"/>
 
   <ListView
       android:layout_width="wrap_content"
