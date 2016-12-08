@@ -87,11 +87,13 @@
     <string name="house_weather_remove_city">移除城市</string>
     <string name="house_weather_city_hint">城市名字</string>
     <string name="house_weather_icon">天气图标</string>
+    <string name="house_menu_weather_howtorun">输入名字添加删除城市，列表中选择城市显示天气</string>
     <string name="house_temp_image_description">室内气温图标</string>
     <string name="house_current_temperature">现在室内气温</string>
     <string name="house_temp_enter">输入温度 (°C)</string>
     <string name="house_temp_time_enter">输入时间 (HH:MM) (24小时格式)</string>
     <string name="house_temperature_schedule_time">设定时间</string>
+    <string name="house_menu_temperature_howtorun">输入气温点击设置时间按钮设置时间，点击列表中选项删除</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">汽车</string>

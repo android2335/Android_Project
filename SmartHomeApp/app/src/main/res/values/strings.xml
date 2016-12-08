@@ -87,11 +87,13 @@
     <string name="house_weather_remove_city">Remove City</string>
     <string name="house_weather_city_hint">Enter City Name</string>
     <string name="house_weather_icon">Weather Icon Image</string>
+    <string name="house_menu_weather_howtorun">Enter name to add/remove city, click city name in the list to display weather</string>
     <string name="house_temp_image_description">House Temperature</string>
     <string name="house_current_temperature">Current Temperature</string>
     <string name="house_temp_enter">Enter Temperature (°C)</string>
     <string name="house_temp_time_enter">Enter Time (HH:MM) (in 24 Hours)</string>
     <string name="house_temperature_schedule_time">Set Schedule</string>
+    <string name="house_menu_temperature_howtorun">Enter the temperature，click button to schedule, click item in list to remove</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">Automobile</string>

@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ * Hou Yu
+ */
 public class HouseDefaultFragment extends Fragment {
 
     private static final String TAG = HouseDefaultFragment.class.getSimpleName();
