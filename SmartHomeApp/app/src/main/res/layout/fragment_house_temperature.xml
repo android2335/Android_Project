@@ -28,13 +28,13 @@
       android:id="@+id/house_temperature"
       android:layout_below="@+id/tempteratureImage"/>
 
-  <EditText
+  <TextView
       android:layout_width="match_parent"
       android:id="@+id/house_temperature_editText"
       android:layout_height="30dp"
-      android:layout_alignBaseline="@+id/house_temperature"
+      android:layout_below="@+id/tempteratureImage"
       android:layout_alignBottom="@+id/house_temperature"
-      android:layout_alignParentEnd="true" />
+      android:layout_toEndOf="@+id/house_temperature" />
 
   <TextView
       android:layout_width="wrap_content"
@@ -43,16 +43,15 @@
       android:text="@string/house_temperature_schedule"
       android:textAppearance="?android:attr/textAppearanceMedium"
       android:id="@+id/house_schedule_temperature"
-      android:layout_below="@+id/house_temperature"
-      android:layout_centerHorizontal="true"/>
+      android:layout_below="@+id/house_temperature"/>
 
   <Button
       android:text="@string/house_temperature_add"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:id="@+id/house_schedule_plus_button"
-      android:layout_alignStart="@+id/house_schedule_temperature"
-      android:layout_below="@+id/house_schedule_temperature"/>
+      android:layout_below="@+id/house_temperature"
+      android:layout_toEndOf="@+id/house_schedule_temperature"/>
 
   <Button
       android:text="@string/house_temperature_remove"
@@ -60,7 +59,7 @@
       android:layout_height="wrap_content"
       android:id="@+id/house_schedule_minus_button"
       android:layout_toEndOf="@+id/house_schedule_plus_button"
-      android:layout_below="@+id/house_schedule_temperature"/>
+      android:layout_below="@+id/house_temperature"/>
 
   <ListView
       android:layout_width="wrap_content"
