@@ -38,6 +38,7 @@
 
     <!-- Kitchen part add here -->
     <string name="title_activity_kitchen">KitchenActivity</string>
+    <string name="title_kitchenitem_detail">Kitchen Item Details</string>
     <string name="delete">Delete</string>
     <string name="add">Add</string>
     <string name="ok">Yes</string>

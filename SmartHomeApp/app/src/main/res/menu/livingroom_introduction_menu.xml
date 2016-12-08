@@ -14,4 +14,10 @@
         android:orderInCategory="20"
         app:showAsAction="always" />
 
+    <item android:id="@+id/More_About_LivingRoom"
+        android:title="More About"
+        android:icon="@drawable/living_room_about"
+        android:orderInCategory="30"
+        app:showAsAction="never" />
+
 </menu>

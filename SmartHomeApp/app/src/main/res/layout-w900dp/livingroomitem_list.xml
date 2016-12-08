@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.example.longquan.smart_home.LivingRoomItemListActivity">
+    tools:context=".LivingRoomItemListActivity">
 
     <!--
     This layout is a two-pane layout for the LivingRoomItems

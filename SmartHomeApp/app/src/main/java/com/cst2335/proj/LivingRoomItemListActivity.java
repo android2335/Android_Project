@@ -58,7 +58,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem mi){
         switch(mi.getItemId()){
             case R.id.menu_help:
-                Toast.makeText(LivingRoomItemListActivity.this, "Help: If you delete an item by accident, " +
+                Toast.makeText(LivingRoomItemListActivity.this, "Tips: If you delete an item by accident, " +
                         "you can recover it by reload the app. If you want to permanently delete an item, " +
                         "you need to modify the app's initialization " +
                         "(we will improve this in version 2.0).",Toast.LENGTH_LONG).show();
@@ -136,7 +136,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                 //retrieve the text of item being clicked on
                 TextView tv = (TextView)view.findViewById(R.id.item_name);
                 final String itemSelected = tv.getText().toString();
-                Toast.makeText(LivingRoomItemListActivity.this, "item clicked =" + itemSelected,Toast.LENGTH_LONG).show();
+                //Toast.makeText(LivingRoomItemListActivity.this, "item clicked =" + itemSelected,Toast.LENGTH_LONG).show();
 
                 builder.setMessage(R.string.dialog_message)//.setTitle(R.string.dialog_title)
                         .setPositiveButton(R.string.delete_item, new DialogInterface.OnClickListener(){
@@ -164,7 +164,7 @@ public class LivingRoomItemListActivity extends AppCompatActivity {
                                 clickcountQuery.moveToFirst();//Very very important! before retrieve column and row
                                 int clickcount = clickcountQuery.getInt(clickcountQuery.getColumnIndex("ClickCount")) + 1;//Error: android.database.CursorIndexOutOfBoundsException: Index -1 requested, with a size of 1
                                 //getInt(columnIndex = -1)!because of no "clickcountQuery.moveToFirst();" line
-                                Toast.makeText(LivingRoomItemListActivity.this, "ClickCount =" + clickcount,Toast.LENGTH_LONG).show();
+                                //Toast.makeText(LivingRoomItemListActivity.this, "ClickCount =" + clickcount,Toast.LENGTH_LONG).show();
                                 setMessage("Item " + itemSelected +",  ClickCount =" + clickcount);
 
                                 //Cursor updateQuery = sqlDB.rawQuery("update " + LivingRoomDatabaseHelper.TABLE_NAME + "set ClickCount = ? where rowid = ?", new String[]{Integer.toString(clickcount),Long.toString(table_id)});

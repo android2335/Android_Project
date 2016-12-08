@@ -31,6 +31,9 @@ import java.util.ArrayList;
 public class KitchenActivity extends AppCompatActivity {
 
     protected static final String ACTIVITY_NAME = "KitchenActivity";
+
+    private boolean isTablet;
+
     String message_display_choice1 = "You selected Microwave";
     String message_display_choice2 = "You selected Fridge";
     String message_display_choice3 = "You selected Main Light";
@@ -51,9 +54,13 @@ public class KitchenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kitchen);
+        setContentView(R.layout.activity_kitchen_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (findViewById(R.id.kitchen_detail_container) != null) {
+            isTablet = true;
+        }
 
         progressBar = (ProgressBar) findViewById(R.id.progress_Bar);
         progressBar.setVisibility(View.VISIBLE);
@@ -169,6 +176,8 @@ public class KitchenActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                final View v = view;
+
                 Log.i(ACTIVITY_NAME, "clicked2" );
                 String Selecteditem = itemname.get(position);
                 Toast.makeText(getApplicationContext(), Selecteditem, Toast.LENGTH_LONG).show();
@@ -181,29 +190,27 @@ public class KitchenActivity extends AppCompatActivity {
                     d.moveToFirst();
                     String type = d.getString(d.getColumnIndex(kDbHelper.APPLIANCE_TYPE));
                     String setting = d.getString(d.getColumnIndex(kDbHelper.APPLIANCE_SETTING));
-                    if (type.equals("Microwave")){
-                        Intent intent = new Intent(KitchenActivity.this, MicrowaveActivity.class);
-                        intent.putExtra("SETTING", setting);
-                        startActivity(intent);
-                    }
+                    if(isTablet){
+                        Bundle arguments = new Bundle();// bundle stores data
+                        //pass the messageText to fragment
+                        arguments.putString(Kitchen_Detail_Fragment.ARG_ITEM_ID_1, type);
+                        arguments.putString(Kitchen_Detail_Fragment.ARG_ITEM_ID_2, setting);
+                        Kitchen_Detail_Fragment fragment = new Kitchen_Detail_Fragment();
 
-                    if (type.equals("Fridge")){
-                        Intent intent = new Intent(KitchenActivity.this, FridgeActivity.class);
-                        intent.putExtra("SETTING", setting);
-                        startActivity(intent);
+                        fragment.setArguments(arguments);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.kitchen_detail_container, fragment)
+                                .commit();
                     }
-
-                    if (type.equals("Main Light")){
-                        Intent intent = new Intent(KitchenActivity.this, MainLightActivity.class);
-                        intent.putExtra("SETTING", setting);
-                        startActivity(intent);
+                    else{
+                        Context context = v.getContext();
+                        Intent intent = new Intent(context, Kitchen_Detail_Activity.class);//phone version: start DetailActivity
+                        intent.putExtra(Kitchen_Detail_Fragment.ARG_ITEM_ID_1, type);
+                        intent.putExtra(Kitchen_Detail_Fragment.ARG_ITEM_ID_2, setting);
+                        context.startActivity(intent);
                     }
                 }
                 d.close();
-
-
-
-
 
             }
         });

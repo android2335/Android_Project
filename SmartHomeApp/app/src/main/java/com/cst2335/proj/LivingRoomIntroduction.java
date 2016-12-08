@@ -46,8 +46,6 @@ public class LivingRoomIntroduction extends AppCompatActivity {
                 return true;
 
             case R.id.About_LivingRoom:
-                Toast.makeText(LivingRoomIntroduction.this, "About Menu is clicked",Toast.LENGTH_LONG).show();
-                setMessage("Help Menu clicked");
 
                 final Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.dialog_help);
@@ -76,6 +74,11 @@ public class LivingRoomIntroduction extends AppCompatActivity {
                 });
 
                 dialog.show();
+                return true;
+
+            case R.id.More_About_LivingRoom:
+                Toast.makeText(LivingRoomIntroduction.this, "Version 2.0 is coming soon, Quan Long",Toast.LENGTH_LONG).show();
+                setMessage("Help Menu clicked");
                 return true;
 
         }

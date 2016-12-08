@@ -7,10 +7,4 @@
         android:orderInCategory="101"
         app:showAsAction="always" />
 
-    <item android:id="@+id/menu_about"
-        android:title="About"
-        android:icon="@drawable/living_room_about"
-        android:orderInCategory="40"
-        app:showAsAction="never" />
-
 </menu>

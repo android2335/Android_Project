@@ -28,17 +28,14 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".MicrowaveActivity"
-            android:label="@string/title_activity_microwave"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".FridgeActivity"
-            android:label="@string/title_activity_fridge"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MainLightActivity"
-            android:label="@string/title_activity_main_light"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".Kitchen_Detail_Activity"
+            android:label="@string/title_kitchenitem_detail"
+            android:parentActivityName=".KitchenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".KitchenActivity" />
+        </activity>
 
         <activity
             android:name=".Automobile"

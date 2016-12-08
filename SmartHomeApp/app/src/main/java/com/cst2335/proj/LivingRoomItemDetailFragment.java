@@ -70,7 +70,7 @@ public class LivingRoomItemDetailFragment extends Fragment {
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
                 //appBarLayout.setTitle(mItem.content);
-                appBarLayout.setTitle("Detailed Message");
+                appBarLayout.setTitle("Living Room Item Details");
             }
         }
 
