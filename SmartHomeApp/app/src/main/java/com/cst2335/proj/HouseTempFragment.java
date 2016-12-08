@@ -216,6 +216,16 @@ public class HouseTempFragment extends Fragment {
             return false;
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // The activity is about to be destroyed.
+        Log.i(TAG, "onDestroy()");
+
+        //Lab 5 - close the database that you opened in onCreate()
+        houseDataDatabaseHelper.close();
+    }
 }
 
 //Inner class
