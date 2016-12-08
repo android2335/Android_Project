@@ -41,6 +41,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Hou Yu
+ */
 public class HouseWeatherFragment extends Fragment {
 
     private static final String TAG = HouseWeatherFragment.class.getSimpleName();

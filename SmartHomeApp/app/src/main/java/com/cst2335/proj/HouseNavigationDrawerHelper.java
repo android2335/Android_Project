@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * Hou Yu
+ */
 public class HouseNavigationDrawerHelper {
 
     DrawerLayout mHouseDrawerLayout;

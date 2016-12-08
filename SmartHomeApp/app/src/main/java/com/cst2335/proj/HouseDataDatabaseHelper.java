@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Hou Yu
+ */
 public class HouseDataDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TAG = "HouseDataDatabaseHelper";

@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+/**
+ * Hou Yu
+ */
 public class HouseGarageFragment extends Fragment {
 
     private static final String TAG = HouseGarageFragment.class.getSimpleName();

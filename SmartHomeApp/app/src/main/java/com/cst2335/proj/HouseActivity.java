@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+/**
+ * Hou Yu
+ */
 public class HouseActivity extends AppCompatActivity
         implements ListView.OnItemClickListener {
 
