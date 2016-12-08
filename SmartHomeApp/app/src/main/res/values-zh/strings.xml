@@ -40,6 +40,8 @@
     <string name="title_activity_kitchen">厨房控制</string>
     <string name="delete">删除</string>
     <string name="add">增加</string>
+    <string name="ok">是</string>
+    <string name="cancel">取消</string>
     <string name="delete_title">请选择需要删除的号码:</string>
     <string name="title_activity_microwave">微波炉控制</string>
     <string name="cooking_time">加热时间:</string>
