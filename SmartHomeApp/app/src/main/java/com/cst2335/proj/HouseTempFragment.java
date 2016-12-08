@@ -1,14 +1,11 @@
 package com.cst2335.proj;
 
-import android.app.TimePickerDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,21 +13,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.codetroopers.betterpickers.timepicker.TimePickerBuilder;
+import com.codetroopers.betterpickers.timepicker.TimePickerDialogFragment;
 
 import java.util.ArrayList;
-
-import static android.support.design.R.styleable.AlertDialog;
 
 public class HouseTempFragment extends Fragment {
 
@@ -40,11 +33,11 @@ public class HouseTempFragment extends Fragment {
 
     private HouseDataDatabaseHelper houseDataDatabaseHelper;
     private SQLiteDatabase sqlDB;
-    private String[] allSchedules = { HouseDataDatabaseHelper.HOUSE_TEMP_KEY_ID,
-            HouseDataDatabaseHelper.HOUSE_TEMP_RECORD };
+    private String[] allSchedules = {HouseDataDatabaseHelper.HOUSE_TEMP_KEY_ID,
+            HouseDataDatabaseHelper.HOUSE_TEMP_RECORD};
 
     private EditText scheduleTempEditText;
-    private int hour, minute;
+    private String timeScheduled = "";
 
     @Override
     public void onAttach(Context context) {
@@ -96,7 +89,7 @@ public class HouseTempFragment extends Fragment {
         //TODO: later maybe use sensor to set the actual temperature in house
         currentTempTextView.setText("20 °C");
 
-        scheduleTempEditText = (EditText)theView.findViewById(R.id.house_temp_edit_text);
+        scheduleTempEditText = (EditText) theView.findViewById(R.id.house_temp_edit_text);
 
         Button addScheduleButton = (Button) theView.findViewById(R.id.house_schedule_add_button);
 
@@ -116,17 +109,17 @@ public class HouseTempFragment extends Fragment {
 
         cursor.moveToFirst();
 
-        while(!cursor.isAfterLast()) {
-            String schedule = cursor.getString( cursor.getColumnIndex( HouseDataDatabaseHelper.HOUSE_TEMP_TABLE_NAME) );
-            Log.i(TAG, "SQL schedule details :" + schedule );
+        while (!cursor.isAfterLast()) {
+            String schedule = cursor.getString(cursor.getColumnIndex(HouseDataDatabaseHelper.HOUSE_TEMP_TABLE_NAME));
+            Log.i(TAG, "SQL schedule details :" + schedule);
             tempSchedulelist.add(schedule);
             cursor.moveToNext();
         }
 
         int cursorColumnCount = cursor.getColumnCount();
-        Log.i(TAG, "Cursor’s column count =" + cursorColumnCount );
-        for(int j=0; j<cursorColumnCount; j++) {
-            Log.i(TAG, "Cursor’s column name =" + cursor.getColumnName(j) );
+        Log.i(TAG, "Cursor’s column count =" + cursorColumnCount);
+        for (int j = 0; j < cursorColumnCount; j++) {
+            Log.i(TAG, "Cursor’s column name =" + cursor.getColumnName(j));
         }
 
         // make sure to close the cursor
@@ -149,10 +142,21 @@ public class HouseTempFragment extends Fragment {
 //                    alert11.show();
 //                }
                 //now set the time
+                //See https://github.com/code-troopers/android-betterpickers
                 TimePickerBuilder tpb = new TimePickerBuilder()
                         .setFragmentManager(getActivity().getSupportFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment);
                 tpb.show();
+                tpb.addTimePickerDialogHandler(new TimePickerDialogFragment.TimePickerDialogHandler() {
+                    @Override
+                    public void onDialogTimeSet(int reference, int hourOfDay, int minute) {
+                        try {
+                            timeScheduled = hourOfDay % 12 + ":" + minute + " " + ((hourOfDay >= 12) ? "PM" : "AM");
+                            String temp = timeScheduled;
+                        } catch (Exception ex) {
+                        }
+                    }
+                });
 
 
 ////                String city = editText.getText().toString().trim();
@@ -193,16 +197,15 @@ public class HouseTempFragment extends Fragment {
     private boolean isValidTemp(String s) {
         try {
             Integer.parseInt(s);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return false;
         }
         int value = Integer.parseInt(s);
-        if(value >=0 && value <=40) {
+        if (value >= 0 && value <= 40) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -231,8 +234,8 @@ class HouseTempAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View result = inflater.inflate(R.layout.house_list_row, null);
-        TextView tempSchedule = (TextView)result.findViewById(R.id.list_text);
-        tempSchedule.setText( getItem(position) ); // get the string at position
+        TextView tempSchedule = (TextView) result.findViewById(R.id.list_text);
+        tempSchedule.setText(getItem(position)); // get the string at position
 
         return result;
     }
