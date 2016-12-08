@@ -2,16 +2,13 @@ package com.cst2335.proj;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -425,11 +422,9 @@ class CityAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View result = inflater.inflate(R.layout.house_city_row, null);
-        TextView city = (TextView)result.findViewById(R.id.city_text);
+        View result = inflater.inflate(R.layout.house_list_row, null);
+        TextView city = (TextView)result.findViewById(R.id.list_text);
         city.setText( getItem(position) ); // get the string at position
-
-
 
         return result;
     }
