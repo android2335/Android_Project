@@ -1,5 +1,7 @@
 package com.cst2335.proj;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,8 +39,8 @@ public class HouseTempFragment extends Fragment {
     private String[] allSchedules = {HouseDataDatabaseHelper.HOUSE_TEMP_KEY_ID,
             HouseDataDatabaseHelper.HOUSE_TEMP_RECORD};
 
-    private EditText scheduleTempEditText;
     private String timeScheduled = "";
+    private String tempSetValue = "";
 
     @Override
     public void onAttach(Context context) {
@@ -89,10 +92,9 @@ public class HouseTempFragment extends Fragment {
         //TODO: later maybe use sensor to set the actual temperature in house
         currentTempTextView.setText("20 °C");
 
-        scheduleTempEditText = (EditText) theView.findViewById(R.id.house_temp_edit_text);
+        final EditText scheduleTempEditText = (EditText) theView.findViewById(R.id.house_temp_edit_text);
 
         Button addScheduleButton = (Button) theView.findViewById(R.id.house_schedule_add_button);
-
 
         ListView scheduleList = (ListView) theView.findViewById(R.id.house_temp_listView);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -129,18 +131,31 @@ public class HouseTempFragment extends Fragment {
         scheduleList.setAdapter(houseTempAdapter);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+        scheduleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                timeScheduled = tempSchedulelist.get(position);
+                if(timeScheduled.trim().length() > 0) {
+                    tempSchedulelist.remove(timeScheduled.trim());
+                    houseTempAdapter.notifyDataSetChanged();
+                    sqlDB.delete(HouseDataDatabaseHelper.HOUSE_TEMP_TABLE_NAME,
+                            HouseDataDatabaseHelper.HOUSE_TEMP_RECORD + "=\'" + timeScheduled + "\'", null);
+                }
+            }
+        });
+
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String tempSetValue = scheduleTempEditText.getText().toString().trim();
-//                if(!isValidTemp(tempSetValue)) {
-//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-//                    builder1.setMessage("Please enter temperature value between 0 ~ 40");
-//                    builder1.setCancelable(true);
-//
-//                    AlertDialog alert11 = builder1.create();
-//                    alert11.show();
-//                }
+                tempSetValue = scheduleTempEditText.getText().toString().trim();
+                if(!isValidTemp(tempSetValue)) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                    builder1.setMessage("Please enter temperature value between 0 ~ 40");
+                    builder1.setCancelable(true);
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }
+                scheduleTempEditText.setText("");
                 //now set the time
                 //See https://github.com/code-troopers/android-betterpickers
                 TimePickerBuilder tpb = new TimePickerBuilder()
@@ -152,34 +167,19 @@ public class HouseTempFragment extends Fragment {
                     public void onDialogTimeSet(int reference, int hourOfDay, int minute) {
                         try {
                             timeScheduled = hourOfDay % 12 + ":" + minute + " " + ((hourOfDay >= 12) ? "PM" : "AM");
-                            String temp = timeScheduled;
+                            String setting =  tempSetValue + " °C " + timeScheduled;
+                            tempSchedulelist.add(setting);
+                            houseTempAdapter.notifyDataSetChanged();
+                            ContentValues values = new ContentValues();
+                            values.put(HouseDataDatabaseHelper.HOUSE_TEMP_RECORD, setting);
+                            sqlDB.insert(HouseDataDatabaseHelper.HOUSE_TEMP_TABLE_NAME, null,
+                                    values);
                         } catch (Exception ex) {
                         }
                     }
                 });
-
-
-////                String city = editText.getText().toString().trim();
-////                if( city.length() == 0 || existCityRecord(city)) {
-//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-//                    builder1.setMessage("Please write a valid city name, and no duplicate city");
-//                    builder1.setCancelable(true);
-//
-//                    AlertDialog alert11 = builder1.create();
-//                    alert11.show();
-////                }else {
-////                    list.add(city.trim());
-////                    editText.setText(""); //clear the text
-////                    cityAdapter.notifyDataSetChanged();
-////
-////                    ContentValues values = new ContentValues();
-////                    values.put(HouseDataDatabaseHelper.CITIES_NAME, city);
-////                    sqlDB.insert(HouseDataDatabaseHelper.CITIES_TABLE_NAME, null,
-////                            values);
-////                }
             }
         });
-
 
         //========  last part =====
         Button mainButton = (Button) theView.findViewById(R.id.houseTempMainButton);
@@ -196,16 +196,15 @@ public class HouseTempFragment extends Fragment {
 
     private boolean isValidTemp(String s) {
         try {
-            Integer.parseInt(s);
+            int value = Integer.parseInt(s);
+            if (value >= 0 && value <= 40) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (NumberFormatException e) {
             return false;
         } catch (NullPointerException e) {
-            return false;
-        }
-        int value = Integer.parseInt(s);
-        if (value >= 0 && value <= 40) {
-            return true;
-        } else {
             return false;
         }
     }

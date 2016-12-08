@@ -51,30 +51,10 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="20dp"
       android:maxLines="1"
-      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:hint="@string/house_temp_enter"
       android:id="@+id/house_temp_edit_text"
       android:layout_toEndOf="@+id/house_temp_enter"
       android:layout_alignBottom="@+id/house_temp_enter"/>
-
-  <!--<TextView-->
-      <!--android:layout_width="wrap_content"-->
-      <!--android:layout_height="wrap_content"-->
-      <!--android:layout_marginTop="20dp"-->
-      <!--android:text="@string/house_temp_time_enter"-->
-      <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-      <!--android:id="@+id/house_temp_time_enter"-->
-      <!--android:layout_below="@+id/house_temp_enter"/>-->
-
-  <!--<EditText-->
-      <!--android:layout_width="wrap_content"-->
-      <!--android:layout_height="wrap_content"-->
-      <!--android:layout_marginTop="20dp"-->
-      <!--android:maxLines="1"-->
-      <!--android:hint="@string/house_temp_time_enter"-->
-      <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-      <!--android:id="@+id/house_temp_time_edit_text"-->
-      <!--android:layout_toEndOf="@+id/house_temp_time_enter"-->
-      <!--android:layout_alignBottom="@+id/house_temp_time_enter"/>-->
 
   <Button
       android:text="@string/house_temperature_schedule_time"

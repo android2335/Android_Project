@@ -29,7 +29,7 @@ public class HouseDataDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String HOUSE_TEMP_TABLE_CREATE = "create table "
             + HOUSE_TEMP_TABLE_NAME + "( " + HOUSE_TEMP_KEY_ID
-            + " text not null, " + HOUSE_TEMP_RECORD
+            + " integer primary key autoincrement, " + HOUSE_TEMP_RECORD
             + " text not null);";
 
     public HouseDataDatabaseHelper(Context ctx) {
