@@ -121,6 +121,12 @@ public class Kitchen_Detail_Fragment extends Fragment {
                         startButton.setEnabled(false);
                         resetButton.setEnabled(false);
 
+                        String new_setting = cooking_time.getText().toString();
+                        String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                                + "' WHERE APPLIANCE = 'Microwave'";
+                        kDb.execSQL(q);
+                        //kDb.close();
+
                     }
                 }
         );
@@ -133,6 +139,12 @@ public class Kitchen_Detail_Fragment extends Fragment {
                         startButton.setEnabled(true);
                         resetButton.setEnabled(true);
 
+                        String new_setting = cooking_time.getText().toString();
+                        String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                                + "' WHERE APPLIANCE = 'Microwave'";
+                        kDb.execSQL(q);
+                        //kDb.close();
+
                     }
                 }
         );
@@ -144,15 +156,15 @@ public class Kitchen_Detail_Fragment extends Fragment {
                         cooking_time.setText("00:00");
                         timer.cancel();
 
+                        String new_setting = cooking_time.getText().toString();
+                        String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                                + "' WHERE APPLIANCE = 'Microwave'";
+                        kDb.execSQL(q);
+                        //kDb.close();
+
                     }
                 }
         );
-
-        String new_setting = cooking_time.getText().toString();
-        String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
-                + "' WHERE APPLIANCE = 'Microwave'";
-        kDb.execSQL(q);
-        //kDb.close();
 
         return rootView;
     }
@@ -209,6 +221,7 @@ public class Kitchen_Detail_Fragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 progressChangedValue1 = progress;
+
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -217,6 +230,12 @@ public class Kitchen_Detail_Fragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 fridgeTemp.setText(Integer.toString((int)((progressChangedValue1/100.0)*7)));
+
+                String new_setting = fridgeTemp.getText().toString() + "," + freezerTemp.getText().toString();
+                String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                        + "' WHERE APPLIANCE = 'Fridge'";
+                kDb.execSQL(q);
+                //kDb.close();
             }
 
 
@@ -228,6 +247,7 @@ public class Kitchen_Detail_Fragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 progressChangedValue2 = progress;
+
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -236,16 +256,16 @@ public class Kitchen_Detail_Fragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 freezerTemp.setText(Integer.toString((int)((progressChangedValue2/100.0)*(-40))));
+
+                String new_setting = fridgeTemp.getText().toString() + "," + freezerTemp.getText().toString();
+                String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                        + "' WHERE APPLIANCE = 'Fridge'";
+                kDb.execSQL(q);
+                //kDb.close();
             }
 
 
         });
-
-        String new_setting = fridgeTemp.getText().toString() + "," + freezerTemp.getText().toString();
-        String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
-                + "' WHERE APPLIANCE = 'Fridge'";
-        kDb.execSQL(q);
-        //kDb.close();
 
         return rootView;
     }
@@ -283,6 +303,15 @@ public class Kitchen_Detail_Fragment extends Fragment {
                     switch_setting = "off";
                 }
 
+                //setting = switch_setting + "," + dimmable_setting;
+                String new_setting= switch_setting + "," + dimmable_setting;
+
+                //String q = "UPDATE KITCHEN_TABLE SET setting = '" + setting
+                String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                        + "' WHERE APPLIANCE = 'Main Light'";
+                kDb.execSQL(q);
+                //kDb.close();
+
             }
         });
 
@@ -297,17 +326,17 @@ public class Kitchen_Detail_Fragment extends Fragment {
                 {
                     dimmable_setting = "nondimmable";
                 }
+
+                //setting = switch_setting + "," + dimmable_setting;
+                String new_setting= switch_setting + "," + dimmable_setting;
+
+                //String q = "UPDATE KITCHEN_TABLE SET setting = '" + setting
+                String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
+                        + "' WHERE APPLIANCE = 'Main Light'";
+                kDb.execSQL(q);
+                //kDb.close();
             }
         });
-
-        //setting = switch_setting + "," + dimmable_setting;
-        String new_setting= switch_setting + "," + dimmable_setting;
-
-        //String q = "UPDATE KITCHEN_TABLE SET setting = '" + setting
-        String q = "UPDATE KITCHEN_TABLE SET setting = '" + new_setting
-                + "' WHERE APPLIANCE = 'Main Light'";
-        kDb.execSQL(q);
-        //kDb.close();
 
         return rootView;
     }
