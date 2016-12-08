@@ -66,6 +66,11 @@
     <string name="house_weather_remove_city">移除城市</string>
     <string name="house_weather_city_hint">城市名字</string>
     <string name="house_weather_icon">天气图标</string>
+    <string name="house_temp_image_description">室内气温图标</string>
+    <string name="house_current_temperature">现在室内气温</string>
+    <string name="house_temperature_schedule">气温设置</string>
+    <string name="house_temperature_add">加</string>
+    <string name="house_temperature_remove">减</string>
 
     <!-- Automobile part add here -->
     <string name="AutomobileText">汽车</string>
